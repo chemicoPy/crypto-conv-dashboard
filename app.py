@@ -31,7 +31,6 @@ from datetime import datetime, timedelta, date
 import pandas_ta as ta
 import plotly.graph_objects as go
 import plotly.express as px
-from IPython.display import clear_output
 from pprint import pprint
 import statsmodels.regression.linear_model as rg
 
