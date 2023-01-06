@@ -144,6 +144,13 @@ df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 df.set_index('timestamp', inplace=True)
 
 
+# calculate RSI
+df['rsi'] = ta.rsi(df['close'])
+
+# calculate Stochastics
+df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
+
+
 import plotly.graph_objs as go
 
 # create a line chart using the close data
@@ -206,13 +213,6 @@ plt.show()
 st.write(fig)
 
 
-
-
-# calculate RSI
-df['rsi'] = ta.rsi(df['close'])
-
-# calculate Stochastics
-df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
 
 st.write(df)
 
