@@ -13,6 +13,5 @@ schedule
 
 streamlit==0.82.0
 
-scikit-learn==1.0.2
 
 
