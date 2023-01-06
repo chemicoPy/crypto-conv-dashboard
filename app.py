@@ -1,9 +1,3 @@
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader
 
 import streamlit as st
 import time
@@ -115,7 +109,7 @@ config = {
 
 import os 
 
-st.title('ML-Forex-Market-Forecast web app')
+st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see full project info")
     
     # ------ layout setting---------------------------
@@ -124,9 +118,7 @@ st.sidebar.markdown(
             """
      ----------
     ## Project Overview
-    ML-Forex-Market-Forecast is a project using LSTM approach in predicting the price & position of the next candle close for intervals: 
-    1-min, 5-min, 15-min, 30-min, 1h, 2h, 4h, 5h, 1d, 1wk, monthly – via FCSAPI real-time & historical data. 
-    """)    
+    Crypto Converter is ...""")    
 
    
 st.sidebar.markdown("## Select Forex pair & Interval below") # add a title to the sidebar container
@@ -147,7 +139,18 @@ time_int = st.sidebar.selectbox(
 st.write("\n")  # add spacing    
    
 
-#API_URL = "https://fcsapi.com/api-v3/forex/history?symbol="+symb+"&period="+time_int+"&access_key=OePoBiGZhsN57a4OYrFH&level=3"
+st.sidebar.markdown(
+
+    """
+    -----------
+    # Let's connect
+ 
+    [![Victor Ogunjobi](https://img.shields.io/badge/Author-@VictorOgunjobi-gray.svg?colorA=gray&colorB=dodgergreen&logo=github)](https://www.github.com/chemicopy)
+    [![Victor Ogunjobi](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/victor-ogunjobi-a761561a5/)
+    [![Victor Ogunjobi](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=gray)](https://twitter.com/chemicopy_)
+    """)
+
+
 
 if symb =="" and time_int=="":
     st.write("You need to select the options at the sidebar to contiune...")
