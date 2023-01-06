@@ -151,6 +151,23 @@ df['rsi'] = ta.rsi(df['close'])
 df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
 
 
+# Candlestick plot
+
+data = [go.Candlestick(x=df.index,
+                       open=df.open,
+                       high=df.high,
+                       low=df.low,
+                       close=df.close)]
+
+layout = go.Layout(title= f'{instrument} in {Tframe} Candlestick with Range Slider',
+                   xaxis={'rangeslider':{'visible':True}})
+fig = go.Figure(data=data,layout=layout)
+plt.show()
+st.write(fig)
+
+
+
+
 import plotly.graph_objs as go
 
 # create a line chart using the close data
