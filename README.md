@@ -12,4 +12,4 @@ Forex pairs: "XAU/USD","BTC/USD","ETH/USD","DOGE/USD", "GBP/USD", "GBP/JPY", "US
              "CAD/CHF", "CAD/JPY", "CHF/JPY", "EUR/GBP","EUR/AUD","EUR/NZD","EUR/CAD","EUR/CHF","EUR/JPY",
              "GBP/AUD", "GBP/NZD", "GBP/CAD", "GBP/CHF", "NZD/CHF", "NZD/CAD", "NZD/JPY", "USD/CHF", "USD/JPY"
 
-## [Use App](https://raj9021555124-ml-forex-market-forecast-app-udnx5e.streamlit.app/)
+## [Use App](https://chemicopy-crypto-conv-dashboard-app-10tiqj.streamlit.app/)
