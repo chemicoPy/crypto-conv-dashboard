@@ -184,8 +184,36 @@ st.write(df)
 
 
 
+import plotly.express as px
 
+# create the line chart
+fig = px.line(df, x=df.index, y=df['rsi'], title=f'{instrument} in {Tframe} Kline Data')
 
+# add the red and green lines
+fig.add_shape(
+    type='line',
+    x0=df.index[0],
+    x1=df.index[-1],
+    y0=75,
+    y1=75,
+    yref='y',
+    line=dict(color='red', dash='dot')
+)
+fig.add_shape(
+    type='line',
+    x0=df.index[0],
+    x1=df.index[-1],
+    y0=25,
+    y1=25,
+    yref='y',
+    line=dict(color='green', dash='dot')
+)
+
+# set the y-axis range to include 0 and 100
+fig.update_layout(yaxis=dict(range=[0, 100]))
+
+plt.show()
+st.write(fig)
 
 
 
