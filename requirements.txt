@@ -6,7 +6,7 @@ pandas==1.4.3; python_version >= '3.8'
 spacy-streamlit==1.0.0
 spacy>=2.2.0
 
-torch
+plotly==5.4.0
 
 streamlit==0.82.0
 
