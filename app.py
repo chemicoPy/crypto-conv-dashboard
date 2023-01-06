@@ -70,61 +70,12 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 
 
 
-#Data & model configuration
-
-config = {
-    
-    "data": {
-        "window_size": 20,
-        "train_split_size": 0.80,
-    },
-    "plots": {
-        "show_plots": True,
-        "xticks_interval": 90,
-        "color_actual": "#001f3f",
-        "color_train": "#3D9970",
-        "color_val": "#0074D9",
-        "color_pred_train": "#3D9970",
-        "color_pred_val": "#0074D9",
-        "color_pred_test": "#FF4136",
-    },
-    "model": {
-        "input_size": 1,
-        "num_lstm_layers": 2,
-        "lstm_size": 32,
-        "dropout": 0.2,
-    },
-    "training": {
-        "device": "cpu", # "cuda" or "cpu"
-        "batch_size": 64,
-        "num_epoch": 50,
-        "learning_rate": 0.01,
-        "scheduler_step_size": 40,
-    }
-}
-
 
 
 #Intervals of interest: Monthly, Weekly, Daily, 4hour, 1hour, 30 minutes
 
 # API Valid periods: 1m,5m,15m,30m,1h,2h,4h,5h,1d,1w,month
 
-bybit = ccxt.bybit()
-lim = 1000
-
-# get BTCUSDT 1 hr kline data
-klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
-
-# filter klines to only include data from the past month
-from datetime import datetime, timedelta
-one_month_ago = datetime.now() - timedelta(days=30)
-filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
-
-print(filtered_klines)
-
-
-
-import os 
 
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see full project info")
@@ -142,6 +93,11 @@ st.sidebar.markdown("## Select Forex pair & Interval below") # add a title to th
     
     # ---------------forex pair selection------------------
   
+
+
+bybit = ccxt.bybit()
+lim = 1000
+
 instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT", "GBP/USDT", "GBP/JPY", 
              "USD/JPY", "EUR/USDT", "NZD/USDT"], index=0)
@@ -186,4 +142,10 @@ df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 
 # set the timestamp column as the index
 df.set_index('timestamp', inplace=True)
+
+# calculate RSI
+df['rsi'] = ta.rsi(df['close'])
+
+# calculate Stochastics
+df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
 
