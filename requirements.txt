@@ -10,6 +10,7 @@ spacy>=2.2.0
 plotly==5.4.0
 pandas_ta 
 schedule
+statsmodels
 
 streamlit==0.82.0
 
