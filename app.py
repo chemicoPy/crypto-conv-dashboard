@@ -114,9 +114,9 @@ st.sidebar.markdown(
     -----------
     # Other Apps
  
-    [Weather App](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    [Immigration Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    [Crime Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    1. [Weather App](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    2. [Immigration Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    3. [Crime Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
     """)
     
     
