@@ -89,11 +89,10 @@ st.sidebar.markdown(
     Crypto Converter is ...""")    
 
    
-st.sidebar.markdown("## Select Forex pair & Interval below") # add a title to the sidebar container
+st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
     
     # ---------------forex pair selection------------------
   
-
 
 bybit = ccxt.bybit()
 lim = 1000
