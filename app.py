@@ -149,3 +149,30 @@ df['rsi'] = ta.rsi(df['close'])
 # calculate Stochastics
 df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
 
+st.write(df)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
