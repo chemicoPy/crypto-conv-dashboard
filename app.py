@@ -165,6 +165,7 @@ fig = go.Figure(data=data,layout=layout)
 plt.show()
 st.write(fig)
 
+py.iplot(fig,filename=f'{instrument} in {Tframe} candlestick')
 
 
 
@@ -183,7 +184,7 @@ layout = go.Layout(
     title= f'{instrument} in {Tframe} Kline Data',
     xaxis=dict(
         title='Time',
-        rangeslider=dict(visible=False)
+        rangeslider=dict(visible=True)
     ),
     yaxis=dict(
         title='Price (USDT)'
