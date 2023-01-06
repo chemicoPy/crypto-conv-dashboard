@@ -165,8 +165,6 @@ fig = go.Figure(data=data,layout=layout)
 plt.show()
 st.write(fig)
 
-py.iplot(fig,filename=f'{instrument} in {Tframe} candlestick')
-
 
 
 import plotly.graph_objs as go
