@@ -143,6 +143,37 @@ df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 # set the timestamp column as the index
 df.set_index('timestamp', inplace=True)
 
+
+import plotly.graph_objs as go
+
+# create a line chart using the close data
+line = go.Scatter(
+    x=df.index,
+    y=df['close'],
+    name='Close',
+    line=dict(color='#17BECF')
+)
+
+# create the layout for the chart
+layout = go.Layout(
+    title= f'{instrument} in {Tframe} Kline Data',
+    xaxis=dict(
+        title='Time',
+        rangeslider=dict(visible=False)
+    ),
+    yaxis=dict(
+        title='Price (USDT)'
+    )
+)
+
+# create the figure and plot the chart
+fig = go.Figure(data=[line], layout=layout)
+plt.show()
+st.write(fig)
+
+
+
+
 # calculate RSI
 df['rsi'] = ta.rsi(df['close'])
 
