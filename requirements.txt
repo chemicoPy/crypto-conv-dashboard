@@ -8,6 +8,8 @@ spacy-streamlit==1.0.0
 spacy>=2.2.0
 
 plotly==5.4.0
+pandas_ta 
+schedule
 
 streamlit==0.82.0
 
