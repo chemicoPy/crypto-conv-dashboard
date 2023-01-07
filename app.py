@@ -175,7 +175,15 @@ df.set_index('timestamp', inplace=True)
 df['rsi'] = ta.rsi(df['close'])
 
 # calculate Stochastics
-df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
+stoch_data = df.copy()
+
+#df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
+#New calculation for Stochastic
+stoch_data['high'] = stoch_data['high'].rolling(14).max()
+stoch_data['low'] = stoch_data['low'].rolling(14).min()
+stoch_data['%k'] = (stoch_data["close"] - stoch_data['low'])*100/(stoch_data['high'] - stoch_data['low'])
+stoch_data['%d'] = stoch_data['%k'].rolling(3).mean()
+df['stoch_data'] = stoch_data['%d']
 
 
 # Candlestick plot
