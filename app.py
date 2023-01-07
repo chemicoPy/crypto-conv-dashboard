@@ -120,41 +120,13 @@ bybit = ccxt.binanceus()
 lim = 1000
 
 
-if st.sidebar.button('Go!'):
-    instrument = st.sidebar.selectbox(
+instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT", "GBP/USDT", 
              "EUR/USDT", "NZD/USDT"], index=0)
-    Tframe = st.sidebar.selectbox(
+Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","1d","1w", "month"], index=0)
  
-else:
-    st.info('Please check side bar for more options...')
     
-st.write("\n")  # add spacing    
-   
-st.sidebar.markdown(
-
-    """
-    -----------
-    # Other Apps
- 
-    1. [Weather App](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    2. [Immigration Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    3. [Crime Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    """)
-    
-    
-st.sidebar.markdown(
-
-    """
-    -----------
-    # Let's connect
- 
-    [![Victor Ogunjobi](https://img.shields.io/badge/Author-@VictorOgunjobi-gray.svg?colorA=gray&colorB=dodgergreen&logo=github)](https://www.github.com/chemicopy)
-    [![Victor Ogunjobi](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/victor-ogunjobi-a761561a5/)
-    [![Victor Ogunjobi](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=gray)](https://twitter.com/chemicopy_)
-    """)
-
 
 klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
@@ -269,15 +241,30 @@ st.write(fig)
 st.write(df)
 
 
+st.write("\n")  # add spacing    
+   
+st.sidebar.markdown(
 
+    """
+    -----------
+    # Other Apps
+ 
+    1. [Weather App](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    2. [Immigration Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    3. [Crime Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    """)
+    
+    
+st.sidebar.markdown(
 
-
-
-
-
-
-
-
+    """
+    -----------
+    # Let's connect
+ 
+    [![Victor Ogunjobi](https://img.shields.io/badge/Author-@VictorOgunjobi-gray.svg?colorA=gray&colorB=dodgergreen&logo=github)](https://www.github.com/chemicopy)
+    [![Victor Ogunjobi](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/victor-ogunjobi-a761561a5/)
+    [![Victor Ogunjobi](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=gray)](https://twitter.com/chemicopy_)
+    """)
 
 
 
