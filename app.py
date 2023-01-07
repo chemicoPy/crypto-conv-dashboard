@@ -86,7 +86,7 @@ from forex_python.converter import CurrencyCodes
 
 c = CurrencyRates()
 
-price = st.number_input("Enter price to convert", height=10)
+price = st.number_input("Enter price to convert")
 
 from_conv = st.selectbox(
             "Convert From",
