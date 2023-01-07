@@ -132,17 +132,13 @@ st.sidebar.markdown(
 
 
 
-if  instrument=="" and Tframe=="":
-    st.write("You need to select the options at the sidebar to contiune...")
+st.write("You need to select the options at the sidebar to contiune...")
 
-else:
-    # get BTCUSDT 1 hr kline data
-    klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
+klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
-# filter klines to only include data from the past month
-    from datetime import datetime, timedelta
-    one_month_ago = datetime.now() - timedelta(days=30)
-    filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
+from datetime import datetime, timedelta
+one_month_ago = datetime.now() - timedelta(days=30)
+filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
     
 # convert the klines list to a DataFrame
 df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
