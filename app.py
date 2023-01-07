@@ -78,7 +78,12 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 
 
 st.title('Crypto Converter to Local Currency')
-st.subheader("Navigate to side bar to see full project info")
+st.subheader("Navigate to side bar to see more options as well as full project info")
+    
+    
+from forex_python.converter import CurrencyRates
+c = CurrencyRates()
+st.write("Converted price",c.convert('USD', 'EUR', 1000))
     
     # ------ layout setting---------------------------
 
