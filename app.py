@@ -82,9 +82,24 @@ st.subheader("Navigate to side bar to see more options as well as full project i
     
     
 from forex_python.converter import CurrencyRates
+from forex_python.converter import CurrencyCodes
+
 c = CurrencyRates()
-st.write("Converted price",c.convert('USD', 'EUR', 1000))
-    
+
+price = st.text_input("Enter price to convert")
+
+from_conv = st.sidebar(
+        '', ["Convert From", "MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
+             "EUR", "NZD"])  
+
+to_conv = st.sidebar(
+        '', ["Convert To", "MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
+             "EUR", "NZD"])
+
+from_symb = c.get_symbol(str(from_conv))
+to_symb = c.get_symbol(str(to_conv))
+st.write("Converted price", c.convert(str(from_conv), str(to_conv), int(price)))
+ 
     # ------ layout setting---------------------------
 
 st.sidebar.markdown(
