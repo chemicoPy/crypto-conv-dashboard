@@ -116,7 +116,7 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
     # ---------------forex pair selection------------------
   
 
-bybit = ccxt.binanceus()
+
 lim = 1000
 
 
@@ -151,6 +151,9 @@ st.sidebar.markdown(
     [![Victor Ogunjobi](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/victor-ogunjobi-a761561a5/)
     [![Victor Ogunjobi](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=gray)](https://twitter.com/chemicopy_)
     """)
+
+
+bybit = ccxt.binanceus()
 
 klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
