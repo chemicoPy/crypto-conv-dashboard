@@ -94,7 +94,7 @@ from_conv = st.selectbox(
              "EUR", "NZD"),)
 
 to_conv = st.selectbox(
-            "Convert From",
+            "Convert To",
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD"),)
 
