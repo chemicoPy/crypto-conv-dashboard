@@ -101,7 +101,8 @@ to_conv = st.selectbox(
 
 #from_symb = c.get_symbol(str(from_conv))
 #to_symb = c.get_symbol(str(to_conv))
-st.write("Converted price", c.convert(from_conv, to_conv, price))
+result = c.convert(from_conv, to_conv, price)
+st.write("Converted price", result)
  
     # ------ layout setting---------------------------
 
