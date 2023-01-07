@@ -153,7 +153,7 @@ st.sidebar.markdown(
     """)
 
 
-bybit = ccxt.binanceus()
+bybit = ccxt.bybit()
 
 klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
