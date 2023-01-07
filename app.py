@@ -88,13 +88,16 @@ c = CurrencyRates()
 
 price = st.text_input("Enter price to convert")
 
-from_conv = st.sidebar(
-        '', ["Convert From", "MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
-             "EUR", "NZD"])  
+from_conv = st.selectbox(
+            "Convert From",
+            ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
+             "EUR", "NZD"),)
 
-to_conv = st.sidebar(
-        '', ["Convert To", "MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
-             "EUR", "NZD"])
+to_conv = st.selectbox(
+            "Convert From",
+            ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
+             "EUR", "NZD"),)
+
 
 from_symb = c.get_symbol(str(from_conv))
 to_symb = c.get_symbol(str(to_conv))
