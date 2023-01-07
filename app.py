@@ -99,13 +99,6 @@ to_conv = st.selectbox(
              "EUR", "NZD"),)
 
 
-from_symb = c.get_symbol(from_conv)
-to_symb = c.get_symbol(to_conv)
-
-st.write(from_symb)
-st.write(to_symb)
-
-
 result = c.convert(from_conv, to_conv, price)
 st.write("Converted price", result)
  
