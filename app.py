@@ -119,14 +119,17 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 bybit = ccxt.binanceus()
 lim = 1000
 
-instrument = st.sidebar.selectbox(
+
+if st.sidebar.button('Go!'):
+    instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT", "GBP/USDT", 
              "EUR/USDT", "NZD/USDT"], index=0)
-  
-Tframe = st.sidebar.selectbox(
+    Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","1d","1w", "month"], index=0)
  
-            
+else:
+    st.info('Please check side bar for more options...')
+    
 st.write("\n")  # add spacing    
    
 st.sidebar.markdown(
