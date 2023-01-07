@@ -81,8 +81,8 @@ st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
     
     
-col1, col2 = st.columns (2, gap="large") 
-col1, col2 = st.columns ((2,4))
+col1, col2 = st.columns(2, gap="large") 
+col1, col2 = st.columns((2,4))
 
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
