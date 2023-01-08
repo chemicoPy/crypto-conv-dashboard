@@ -87,7 +87,7 @@ from forex_python.converter import CurrencyCodes
 
 c = CurrencyRates()
 
-price = float(st.number_input("Enter price to convert"))
+price = st.number_input("Enter price to convert")
 
 from_conv = st.selectbox(
             "Convert From",
@@ -100,7 +100,7 @@ to_conv = st.selectbox(
              "EUR", "NZD"),)
 
 from google_currency import convert 
-response = convert(from_conv, to_conv, price)
+response = convert("usd", "inr", price)
 st.write(response)
 
 #result = c.convert(from_conv, to_conv, price)
