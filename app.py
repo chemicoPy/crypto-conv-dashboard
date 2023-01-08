@@ -102,8 +102,8 @@ result = response.json()
 
 from forex_python.converter import CurrencyCodes
 c  = CurrencyCodes()
-st.write("Converted price", c.get_symbol(to_conv),result["info"]["quote"])
-
+#st.write("Converted price", c.get_symbol(to_conv),result["info"]["quote"])
+st.info('Please navigate to sidebar; select crypro pairs & time-interval to see dashboard', icon="ℹ️")
  
     # ------ layout setting---------------------------
 
