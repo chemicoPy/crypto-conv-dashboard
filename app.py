@@ -139,7 +139,6 @@ def main():
     Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
-    demo = st.sidebar.checkbox('Show Dashboard')
     
     st.sidebar.markdown(
 
