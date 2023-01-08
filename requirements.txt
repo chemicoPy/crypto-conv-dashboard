@@ -1,6 +1,6 @@
 ccxt
 forex-python
-
+google_currency
 matplotlib-inline==0.1.3; python_version >= '3.5'
 matplotlib==3.5.2
 numpy==1.19.4
