@@ -99,9 +99,11 @@ to_conv = st.selectbox(
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD"),)
 
-from google_currency import convert 
-response = convert("inr", "usd", price)
-st.write(response)
+response = requests.get(
+    f"https://api.frankfurter.app/latest?amount={price}&from={from_conv}&to={to_conv}")
+
+print(
+    f"{price} {from_conv} is {response.json()['rates'][to_conv]} {to_conv}")
 
 #result = c.convert(from_conv, to_conv, price)
 #st.write("Converted price", result)
