@@ -87,7 +87,7 @@ from forex_python.converter import CurrencyCodes
 
 c = CurrencyRates()
 
-price = st.number_input("Enter price to convert")
+price = float(st.number_input("Enter price to convert"))
 
 from_conv = st.selectbox(
             "Convert From",
@@ -100,10 +100,10 @@ to_conv = st.selectbox(
              "EUR", "NZD"),)
 
 response = requests.get(
-    f"https://api.frankfurter.app/latest?amount={price}&from={from_conv}&to={to_conv}")
+    f"https://api.frankfurter.app/latest?amount={1000}&from={USD}&to={NZD}")
 
 st.write(
-    f"{price} {from_conv} is {response.json()['rates'][to_conv]} {to_conv}")
+    f"{1000} {USD} is {response.json()['rates'][NZD]} {NZD}")
 #result = c.convert(from_conv, to_conv, price)
 #st.write("Converted price", result)
  
