@@ -104,8 +104,7 @@ response = requests.get(
 
 st.write(response.json())
 
-#print(
-    f"{price} {from_conv} is {response.json()['rates'][to_conv]} {to_conv}")
+#print(f"{price} {from_conv} is {response.json()['rates'][to_conv]} {to_conv}")
 
 #result = c.convert(from_conv, to_conv, price)
 #st.write("Converted price", result)
