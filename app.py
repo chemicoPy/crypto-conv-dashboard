@@ -99,6 +99,8 @@ def main():
             "Convert To",
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD"),)
+    
+    demo = st.sidebar.checkbox('Show Dashboard')
 
     url = "https://api.apilayer.com/currency_data/convert?to="+to_conv+"&from="+from_conv+"&amount="+str(price)
 
@@ -164,8 +166,7 @@ def main():
     
     lim = 1000
     
-    
-    demo = st.sidebar.checkbox('Show Dashboard')
+   
 
     if demo == 1:
         bybit = ccxt.bybit()
