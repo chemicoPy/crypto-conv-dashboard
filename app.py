@@ -276,8 +276,9 @@ def main():
 
         st.write(df)
     
-  else:
-    st.info('Please check the Show Dashboard icon', icon="ℹ️")
+    
+    else:
+        st.info('Please check the Show Dashboard icon', icon="ℹ️")
     
 
    
