@@ -100,9 +100,11 @@ to_conv = st.selectbox(
              "EUR", "NZD"),)
 
 response = requests.get(
-    f"https://api.frankfurter.app/latest?amount={price}&from={from_conv}&to={to_conv}")
+    f"https://api.currencylayer.com/convert?from={from_conv}&to={to_conv}={price}")
 
-print(
+st.write(response.json())
+
+#print(
     f"{price} {from_conv} is {response.json()['rates'][to_conv]} {to_conv}")
 
 #result = c.convert(from_conv, to_conv, price)
