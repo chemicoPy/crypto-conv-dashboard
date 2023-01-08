@@ -67,79 +67,68 @@ st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 # disable warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
-
-
-
-
-
-#Intervals of interest: Monthly, Weekly, Daily, 4hour, 1hour, 30 minutes
-
-# API Valid periods: 1m,5m,15m,30m,1h,2h,4h,5h,1d,1w,month
     
 
-def main():
-    
-    st.title('Crypto Converter to Local Currency')
-    st.subheader("Navigate to side bar to see more options as well as full project info")
+st.title('Crypto Converter to Local Currency')
+st.subheader("Navigate to side bar to see more options as well as full project info")
 
-    from forex_python.converter import CurrencyRates
-    from forex_python.converter import CurrencyCodes
+from forex_python.converter import CurrencyRates
+from forex_python.converter import CurrencyCodes
 
-    c = CurrencyRates()
+c = CurrencyRates()
 
-    price = st.number_input("Enter price to convert")
+price = st.number_input("Enter price to convert")
 
-    from_conv = st.selectbox(
+from_conv = st.selectbox(
             "Convert From",
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD"),)
 
-    to_conv = st.selectbox(
+to_conv = st.selectbox(
             "Convert To",
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD"),)
     
     
+url = "https://api.apilayer.com/currency_data/convert?to="+to_conv+"&from="+from_conv+"&amount="+str(price)
 
-    url = "https://api.apilayer.com/currency_data/convert?to="+to_conv+"&from="+from_conv+"&amount="+str(price)
-
-    payload = {}
-    headers= {
+payload = {}
+headers= {
   "apikey": "tUUarL5foSr72GfV4wbgOYLWU0qghV9h"
 }
 
-    response = requests.request("GET", url, headers=headers, data = payload)
+response = requests.request("GET", url, headers=headers, data = payload)
 
-    status_code = response.status_code
-    result = response.json()
+status_code = response.status_code
+result = response.json()
 
-    from forex_python.converter import CurrencyCodes
-    c  = CurrencyCodes()
+from forex_python.converter import CurrencyCodes
+c  = CurrencyCodes()
     #st.write("Converted price", c.get_symbol(to_conv),result["info"]["quote"])
 
  
     # ------ layout setting---------------------------
 
-    st.sidebar.markdown(
+st.sidebar.markdown(
             """
      ----------
     ## Project Overview
     Crypto Converter is ...""")    
 
    
-    st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
+st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
     
     # ---------------forex pair selection------------------
   
-    st.write("\n")  # add spacing   
+st.write("\n")  # add spacing   
 
-    instrument = st.sidebar.selectbox(
+instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
-    Tframe = st.sidebar.selectbox(
+Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
     
     
-    st.sidebar.markdown(
+st.sidebar.markdown(
 
     """
     -----------
@@ -151,7 +140,7 @@ def main():
     """)
     
     
-    st.sidebar.markdown(
+st.sidebar.markdown(
 
     """
     -----------
@@ -164,61 +153,60 @@ def main():
 
     
     
-    lim = 1000
+lim = 1000
 
-    
-    bybit = ccxt.bybit()
+bybit = ccxt.bybit()
 
-    klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
+klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
-    from datetime import datetime, timedelta
-    one_month_ago = datetime.now() - timedelta(days=30)
-    filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
+from datetime import datetime, timedelta
+one_month_ago = datetime.now() - timedelta(days=30)
+filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
     
 # convert the klines list to a DataFrame
-    df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
 # convert the timestamp column to a datetime type
-    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 
 # set the timestamp column as the index
-    df.set_index('timestamp', inplace=True)
+df.set_index('timestamp', inplace=True)
 
 
 # calculate RSI
-    df['rsi'] = ta.rsi(df['close'])
+df['rsi'] = ta.rsi(df['close'])
 
 # calculate Stochastics
-    stoch_data = df.copy()
+stoch_data = df.copy()
 
 #df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
 #New calculation for Stochastic
-    stoch_data['high'] = stoch_data['high'].rolling(14).max()
-    stoch_data['low'] = stoch_data['low'].rolling(14).min()
-    stoch_data['%k'] = (stoch_data["close"] - stoch_data['low'])*100/(stoch_data['high'] - stoch_data['low'])
-    stoch_data['%d'] = stoch_data['%k'].rolling(3).mean()
-    df['stoch_data'] = stoch_data['%d']
+stoch_data['high'] = stoch_data['high'].rolling(14).max()
+stoch_data['low'] = stoch_data['low'].rolling(14).min()
+stoch_data['%k'] = (stoch_data["close"] - stoch_data['low'])*100/(stoch_data['high'] - stoch_data['low'])
+stoch_data['%d'] = stoch_data['%k'].rolling(3).mean()
+df['stoch_data'] = stoch_data['%d']
 
 
 # Candlestick plot
 
-    data = [go.Candlestick(x=df.index,
+data = [go.Candlestick(x=df.index,
                        open=df.open,
                        high=df.high,
                        low=df.low,
                        close=df.close)]
 
-    layout = go.Layout(title= f'{instrument} in {Tframe} Candlestick with Range Slider',
+layout = go.Layout(title= f'{instrument} in {Tframe} Candlestick with Range Slider',
                    xaxis={'rangeslider':{'visible':True}})
-    fig = go.Figure(data=data,layout=layout)
-    plt.show()
-    st.write(fig)
+fig = go.Figure(data=data,layout=layout)
+plt.show()
+st.write(fig)
 
     
-    import plotly.graph_objs as go
+import plotly.graph_objs as go
 
 # create a line chart using the close data
-    line = go.Scatter(
+line = go.Scatter(
         x=df.index,
         y=df['close'],
         name='Close',
@@ -226,7 +214,7 @@ def main():
 )
 
 # create the layout for the chart
-    layout = go.Layout(
+layout = go.Layout(
         title= f'{instrument} in {Tframe} Kline Data',
     xaxis=dict(
         title='Time',
@@ -238,17 +226,17 @@ def main():
 )
 
 # create the figure and plot the chart
-    fig = go.Figure(data=[line], layout=layout)
-    plt.show()
-    st.write(fig)
+fig = go.Figure(data=[line], layout=layout)
+plt.show()
+st.write(fig)
 
-    import plotly.express as px
+import plotly.express as px
 
 # create the line chart
-    fig = px.line(df, x=df.index, y=df['rsi'], title=f'{instrument} in {Tframe} Kline Data')
+fig = px.line(df, x=df.index, y=df['rsi'], title=f'{instrument} in {Tframe} Kline Data')
 
 # add the red and green lines
-    fig.add_shape(
+fig.add_shape(
     type='line',
     x0=df.index[0],
     x1=df.index[-1],
@@ -258,7 +246,7 @@ def main():
     line=dict(color='red', dash='dot')
 )
         
-    fig.add_shape(
+fig.add_shape(
     type='line',
     x0=df.index[0],
     x1=df.index[-1],
@@ -269,15 +257,11 @@ def main():
 )
 
 # set the y-axis range to include 0 and 100
-    fig.update_layout(yaxis=dict(range=[0, 100]))
+fig.update_layout(yaxis=dict(range=[0, 100]))
 
-    plt.show()
-    st.write(fig)
+plt.show()
+st.write(fig)
 
-    st.write(df)
+st.write(df)
 
    
-
-
-if __name__ == '__main__':
-    main()
