@@ -75,13 +75,12 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #Intervals of interest: Monthly, Weekly, Daily, 4hour, 1hour, 30 minutes
 
 # API Valid periods: 1m,5m,15m,30m,1h,2h,4h,5h,1d,1w,month
-
-
-st.title('Crypto Converter to Local Currency')
-st.subheader("Navigate to side bar to see more options as well as full project info")
     
 
 def main():
+    
+    st.title('Crypto Converter to Local Currency')
+    st.subheader("Navigate to side bar to see more options as well as full project info")
 
     from forex_python.converter import CurrencyRates
     from forex_python.converter import CurrencyCodes
@@ -165,7 +164,7 @@ def main():
 
     
     
-   lim = 1000
+    lim = 1000
 
     
     bybit = ccxt.bybit()
