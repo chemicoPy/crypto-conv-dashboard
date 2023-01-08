@@ -136,13 +136,7 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 st.write("\n")  # add spacing   
 
 
-instrument = st.sidebar.selectbox(
-        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
-Tframe = st.sidebar.selectbox(
-        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
-
-   
 st.sidebar.markdown(
 
     """
@@ -169,6 +163,11 @@ st.sidebar.markdown(
 lim = 1000
 
 def plotit():
+    
+    instrument = st.sidebar.selectbox(
+        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
+    Tframe = st.sidebar.selectbox(
+        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
     
     bybit = ccxt.bybit()
 
