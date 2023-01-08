@@ -103,7 +103,7 @@ response = requests.get(
     f"https://api.frankfurter.app/latest?amount={1000}&from={USD}&to={NZD}")
 
 st.write(
-    f"{1000} {USD} is {response.json()['rates'][NZD]} {NZD}")
+    f"{1000} {"USD"} is {response.json()['rates'][NZD]} {NZD}")
 #result = c.convert(from_conv, to_conv, price)
 #st.write("Converted price", result)
  
