@@ -100,7 +100,7 @@ to_conv = st.selectbox(
              "EUR", "NZD"),)
 
 from google_currency import convert 
-response = convert("usd", "inr", price)
+response = convert(from_conv.lower(), to_conv.lower(), price)
 st.write(response)
 
 #result = c.convert(from_conv, to_conv, price)
