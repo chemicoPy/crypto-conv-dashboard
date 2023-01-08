@@ -35,8 +35,6 @@ from pprint import pprint
 import statsmodels.regression.linear_model as rg
 
 
-
-
 # Desiging & implementing changes to the standard streamlit UI/UX
 st.set_page_config(page_icon="img/page_icon.png")    #Logo
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
@@ -104,7 +102,7 @@ result = response.json()
 
 from forex_python.converter import CurrencyCodes
 c  = CurrencyCodes()
-    #st.write("Converted price", c.get_symbol(to_conv),result["info"]["quote"])
+st.write("Converted price", c.get_symbol(to_conv),result["info"]["quote"])
 
  
     # ------ layout setting---------------------------
