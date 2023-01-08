@@ -99,10 +99,21 @@ to_conv = st.selectbox(
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD"),)
 
-response = requests.get(
-    f"https://api.currencylayer.com/convert?from={from_conv}&to={to_conv}={price}")
+url = "https://api.apilayer.com/currency_data/convert?to="+to_conv+"&from="+from_conv+"&amount="+str(price)
 
-st.write(response.json())
+payload = {}
+headers= {
+  "apikey": "tUUarL5foSr72GfV4wbgOYLWU0qghV9h"
+}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+status_code = response.status_code
+result = response.json()
+
+from forex_python.converter import CurrencyCodes
+c = CurrencyCodes()
+st.write(c.get_symbol(to_conv),result["info"]["quote"])
 
 #print(f"{price} {from_conv} is {response.json()['rates'][to_conv]} {to_conv}")
 
