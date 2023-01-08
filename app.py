@@ -166,8 +166,6 @@ def main():
 
     
     lim = 1000
-    
-   
 
     if demo == 1:
         bybit = ccxt.bybit()
@@ -278,10 +276,12 @@ def main():
 
         st.write(df)
     
-    
+  else:
+    st.info('Please check the Show Dashboard icon', icon="ℹ️")
     
 
-    
+   
+
 
 if __name__ == '__main__':
     main()
