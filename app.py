@@ -99,11 +99,10 @@ to_conv = st.selectbox(
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD"),)
 
-response = requests.get(
-    f"https://api.frankfurter.app/latest?amount={1000}&from={USD}&to={NZD}")
+from google_currency import convert 
+response = convert(from_conv, to_conv, price)
+st.write(response)
 
-st.write(
-    f"{1000} {price} is {response.json()['rates'][NZD]} {NZD}")
 #result = c.convert(from_conv, to_conv, price)
 #st.write("Converted price", result)
  
