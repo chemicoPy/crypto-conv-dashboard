@@ -35,6 +35,36 @@ from pprint import pprint
 import statsmodels.regression.linear_model as rg
 
 
+class CurrencyConverter:
+    def __init__(self, YOUR_APP_ID, symbols):
+            self.YOUR_APP_ID = YOUR_APP_ID
+            self.symbols = symbols
+            self._symbols = ",".join([str(s) for s in symbols])
+
+            r = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : self.YOUR_APP_ID,
+                    "symbols" : self._symbols,
+                    "show_alternatives": True
+                        }
+                )
+            self.rates_ = r.json()["rates"]
+            self.rates_["USD"] = 1
+
+    def convert(self, value, symbol_from, symbol_to):
+        try:
+            return value * 1/self.rates_.get(symbol_from) * self.rates_.get(symbol_to)
+        except TypeError:
+            print("Error")
+            return None
+
+
+if __name__ == "__main__":
+    YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
+    
+    
+
 # Desiging & implementing changes to the standard streamlit UI/UX
 st.set_page_config(page_icon="img/page_icon.png")    #Logo
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
