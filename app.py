@@ -80,29 +80,54 @@ price = st.number_input("Enter price to convert")
 from_conv = st.selectbox(
             "Convert From",
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
-             "EUR", "NZD"),)
+             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
 
 to_conv = st.selectbox(
             "Convert To",
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
-             "EUR", "NZD"),)
+             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
     
-url = "https://api.apilayer.com/currency_data/convert?to="+to_conv+"&from="+from_conv+"&amount="+str(price)
+class CurrencyConverter:
+    def __init__(self, YOUR_APP_ID, symbols):
+            self.YOUR_APP_ID = YOUR_APP_ID
+            self.symbols = symbols
+            self._symbols = ",".join([str(s) for s in symbols])
 
-payload = {}
-headers= {
-  "apikey": "tUUarL5foSr72GfV4wbgOYLWU0qghV9h"
-}
+            r = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : self.YOUR_APP_ID,
+                    "symbols" : self._symbols,
+                    "show_alternatives": True
+                        }
+                )
+            self.rates_ = r.json()["rates"]
+            self.rates_["USD"] = 1
 
-response = requests.request("GET", url, headers=headers, data = payload)
+    def convert(self, value, symbol_from, symbol_to):
+        try:
+            return value * 1/self.rates_.get(symbol_from) * self.rates_.get(symbol_to)
+        except TypeError:
+            print("Error")
+            return None
 
-status_code = response.status_code
-result = response.json()
 
-from forex_python.converter import CurrencyCodes
-c  = CurrencyCodes()
-#st.write("Converted price", c.get_symbol(to_conv),result["info"]["quote"])
+if __name__ == "__main__":
+    YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
+    
+
+simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
+             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"])
+
+st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv))   
+
  
     # ------ layout setting---------------------------
 
@@ -119,10 +144,14 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
   
 st.write("\n")  # add spacing   
 
+   
+    
+    
 instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
 Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
+    
     
     
 st.sidebar.markdown(
