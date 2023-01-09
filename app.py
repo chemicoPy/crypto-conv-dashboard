@@ -70,29 +70,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
 
-class CurrencyConverter:
-    def __init__(self, YOUR_APP_ID, symbols):
-            self.YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
-            self.symbols = symbols
-            self._symbols = ",".join([str(s) for s in symbols])
 
-            r = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : self.YOUR_APP_ID,
-                    "symbols" : self._symbols,
-                    "show_alternatives": True
-                        }
-                )
-            self.rates_ = r.json()["rates"]
-            self.rates_["USD"] = 1
-
-    def convert(self, value, symbol_from, symbol_to):
-        try:
-            return value * 1/self.rates_.get(symbol_from) * self.rates_.get(symbol_to)
-        except TypeError:
-            print("Error")
-            return None
   
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
@@ -105,8 +83,8 @@ from_conv = st.selectbox(
             "Convert From",
             ("MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
+              "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+               "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
 
 to_conv = st.selectbox(
             "Convert To",
@@ -115,14 +93,8 @@ to_conv = st.selectbox(
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
                                                   "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
-    
-    
-simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
-             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"])
 
-st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
+#st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 
  
