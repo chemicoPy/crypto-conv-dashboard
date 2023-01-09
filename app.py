@@ -70,7 +70,6 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
 
-
   
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
@@ -101,7 +100,6 @@ st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price,
     # ------ layout setting---------------------------
 st.sidebar.markdown(
             """
-     ----------
     ## Project Overview
     Crypto Converter is ...""")    
 
@@ -127,16 +125,6 @@ r = requests.get(
                     "show_alternatives": True
                         }
                 )
-rates = r.json()["rates"]
-rates["USD"] = 1
-
-def convert(value, symbol_from, symbol_to):
-    try:
-        return value * 1/rates.get(symbol_from) * rates.get(symbol_to)
-    except TypeError:
-        print("Error")
-        return None
-         
          
     
 instrument = st.sidebar.selectbox(
