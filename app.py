@@ -94,7 +94,7 @@ to_conv = st.selectbox(
     
 class CurrencyConverter:
     def __init__(self, YOUR_APP_ID, symbols):
-            self.YOUR_APP_ID = YOUR_APP_ID
+            self.YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
             self.symbols = symbols
             self._symbols = ",".join([str(s) for s in symbols])
 
@@ -116,11 +116,7 @@ class CurrencyConverter:
             print("Error")
             return None
 
-
-if __name__ == "__main__":
-    YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
     
-
 simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
@@ -130,7 +126,6 @@ st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price,
 
  
     # ------ layout setting---------------------------
-
 st.sidebar.markdown(
             """
      ----------
@@ -145,7 +140,7 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 st.write("\n")  # add spacing   
 
    
-    
+   
     
 instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
