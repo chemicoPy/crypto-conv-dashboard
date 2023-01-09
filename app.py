@@ -69,6 +69,55 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
+  
+
+ 
+    # ------ layout setting---------------------------
+st.sidebar.markdown(
+            """
+     ----------
+    ## Project Overview
+    Crypto Converter is ...""")    
+
+   
+st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
+    
+    # ---------------forex pair selection------------------
+  
+st.write("\n")  # add spacing   
+
+   
+   
+    
+instrument = st.sidebar.selectbox(
+        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
+Tframe = st.sidebar.selectbox(
+        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
+    
+    
+    
+st.sidebar.markdown(
+
+    """
+    -----------
+    # Other Apps
+ 
+    1. [Weather App](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    2. [Immigration Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    3. [Crime Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    """)
+    
+    
+st.sidebar.markdown(
+
+    """
+    -----------
+    # Let's connect
+ 
+    [![Victor Ogunjobi](https://img.shields.io/badge/Author-@VictorOgunjobi-gray.svg?colorA=gray&colorB=dodgergreen&logo=github)](https://www.github.com/chemicopy)
+    [![Victor Ogunjobi](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/victor-ogunjobi-a761561a5/)
+    [![Victor Ogunjobi](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=gray)](https://twitter.com/chemicopy_)
+    """)
 
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
@@ -122,57 +171,7 @@ simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","D
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
                                                   "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"])
 
-st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv))   
-
- 
-    # ------ layout setting---------------------------
-st.sidebar.markdown(
-            """
-     ----------
-    ## Project Overview
-    Crypto Converter is ...""")    
-
-   
-st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
-    
-    # ---------------forex pair selection------------------
-  
-st.write("\n")  # add spacing   
-
-   
-   
-    
-instrument = st.sidebar.selectbox(
-        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
-Tframe = st.sidebar.selectbox(
-        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
-    
-    
-    
-st.sidebar.markdown(
-
-    """
-    -----------
-    # Other Apps
- 
-    1. [Weather App](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    2. [Immigration Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    3. [Crime Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
-    """)
-    
-    
-st.sidebar.markdown(
-
-    """
-    -----------
-    # Let's connect
- 
-    [![Victor Ogunjobi](https://img.shields.io/badge/Author-@VictorOgunjobi-gray.svg?colorA=gray&colorB=dodgergreen&logo=github)](https://www.github.com/chemicopy)
-    [![Victor Ogunjobi](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/victor-ogunjobi-a761561a5/)
-    [![Victor Ogunjobi](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=gray)](https://twitter.com/chemicopy_)
-    """)
-
-    
+st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 lim = 1000
 
