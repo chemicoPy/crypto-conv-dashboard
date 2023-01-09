@@ -63,7 +63,12 @@ class CurrencyConverter:
 if __name__ == "__main__":
     YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
     
-    
+simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
+             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"])
+
+  
 
 # Desiging & implementing changes to the standard streamlit UI/UX
 st.set_page_config(page_icon="img/page_icon.png")    #Logo
@@ -124,7 +129,7 @@ to_conv = st.selectbox(
                                                   "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
 
-#st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
+st.write("Converted price"(c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 
  
