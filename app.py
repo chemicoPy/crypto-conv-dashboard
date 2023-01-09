@@ -113,14 +113,14 @@ price = st.number_input("Enter price to convert")
 from_conv = st.selectbox(
             "Convert From",
             ("GBP", 
-             "EUR", "NZD", "USD", "NPR", "BTC", 'JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+"EUR", "NZD", "USD", "NPR","JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
               "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
                "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
 
 to_conv = st.selectbox(
             "Convert To",
             ("GBP", 
-             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+             "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
                                                   "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
