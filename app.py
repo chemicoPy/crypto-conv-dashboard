@@ -13,9 +13,7 @@ from io import BytesIO
 from time import sleep
 import math
 from pathlib import Path
-
 from numpy import *
-
 import json
 from pandas import DataFrame, Series
 from numpy.random import randn
@@ -24,7 +22,6 @@ import io
 from pandas.io.json import json_normalize
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
-
 
 import ccxt,pytz,time,schedule, requests
 from datetime import datetime, timedelta, date
@@ -178,7 +175,11 @@ st.sidebar.markdown(
 lim = 1000
 bybit = ccxt.bybit()
 
-try:
+if not instrument:
+  if not Tframe:
+    st.write("Kindly navigate to sidebar to see more options...")
+
+else:
   klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
   from datetime import datetime, timedelta
@@ -287,5 +288,3 @@ try:
   st.write(df)
 
    
-except BadSymbol:
-  st.error("Kindly navigate to sidebar to see more options...")
