@@ -105,7 +105,7 @@ simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","D
 
 c = CurrencyRates()
 
-price = st.number_input("Enter price to convert")
+
 
 from_conv = st.selectbox(
             "Convert From",
@@ -119,7 +119,7 @@ to_conv = st.selectbox(
             ("GBP", 
              "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
+price = st.number_input("Enter price to convert")                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
 st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
