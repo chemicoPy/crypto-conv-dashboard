@@ -175,9 +175,8 @@ st.sidebar.markdown(
 lim = 1000
 bybit = ccxt.bybit()
 
-if not instrument:
-  if not Tframe:
-    st.write("Kindly navigate to sidebar to see more options...")
+if instrument=="Select Forex Pair of interest" and Tframe=="Interval of interest":
+  st.write("Kindly navigate to sidebar to see more options...")
 
 else:
   klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
