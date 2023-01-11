@@ -119,6 +119,7 @@ to_conv = st.selectbox(
             ("GBP", 
              "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+
 price = st.number_input("Enter price to convert")                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
 st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
