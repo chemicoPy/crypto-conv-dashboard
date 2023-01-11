@@ -225,7 +225,7 @@ try:
   st.write(fig)
 
     
-import plotly.graph_objs as go
+  import plotly.graph_objs as go
 
 # create a line chart using the close data
   line = go.Scatter(
