@@ -106,7 +106,6 @@ simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","D
 c = CurrencyRates()
 
 
-
 from_conv = st.selectbox(
             "Convert From",
             ("GBP", 
@@ -118,10 +117,10 @@ to_conv = st.selectbox(
             "Convert To",
             ("GBP", 
              "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-
-price = st.number_input("Enter price to convert")                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
+                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS", "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
+price = st.number_input("Enter price to convert")
+
 st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
@@ -146,7 +145,6 @@ instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
 Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
-    
     
     
 st.sidebar.markdown(
