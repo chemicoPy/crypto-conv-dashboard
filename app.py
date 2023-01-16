@@ -103,25 +103,6 @@ simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","D
 
 
 c = CurrencyRates()
-
-
-from_conv = st.selectbox(
-            "Convert From",
-            ("GBP", 
-"EUR", "NZD", "USD", "NPR","JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-              "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-               "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
-
-to_conv = st.selectbox(
-            "Convert To",
-            ("GBP", 
-             "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS", "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
-    
-price = st.number_input("Enter price to convert")
-
-st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
-#st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 def add_logo():
     st.markdown(
@@ -157,7 +138,25 @@ st.sidebar.markdown(
 
   
 st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
+
+from_conv = st.sidebar.selectbox(
+            "Convert From",
+            ("GBP", 
+"EUR", "NZD", "USD", "NPR","JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+              "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+               "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
+
+to_conv = st.sidebar.selectbox(
+            "Convert To",
+            ("GBP", 
+             "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS", "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
+price = st.sidebar.number_input("Enter price to convert")
+
+st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
+#st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
+
     # ---------------forex pair selection------------------
   
 st.write("\n")  # add spacing   
