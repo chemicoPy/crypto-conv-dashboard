@@ -124,10 +124,27 @@ price = st.number_input("Enter price to convert")
 st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
-
-if st.sidebar.checkbox("Use url", value=True):
-    add_logo("https://github.com/chemicoPy/crypto-conv-dashboard/blob/main/img/page_icon.png")
-
+st.markdown(
+        """
+        <style>
+            [data-testid="stSidebarNav"] {
+                background-image: url(http://placekitten.com/200/200);
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }
+            [data-testid="stSidebarNav"]::before {
+                content: "My Company Name";
+                margin-left: 20px;
+                margin-top: 20px;
+                font-size: 30px;
+                position: relative;
+                top: 100px;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
   
     # ------ layout setting---------------------------
 st.sidebar.markdown(
