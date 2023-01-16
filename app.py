@@ -282,7 +282,7 @@ if st.sidebar.button("Show Viz!"):
 
     st.write(df)
     
- st.sidebar.markdown(
+st.sidebar.markdown(
 
     """
     -----------
