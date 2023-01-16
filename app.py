@@ -135,6 +135,7 @@ st.sidebar.markdown(
             """
     ## Project Overview
     Crypto Converter is an app that converts crypto coin price to a local currency price. You can check price on a visualization board as well when you select the option and hit on the button.
+    
     Get started already!""")    
 
   
