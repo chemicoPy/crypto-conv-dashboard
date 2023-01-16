@@ -150,13 +150,13 @@ from_conv = st.sidebar.selectbox(
 
 to_conv = st.sidebar.selectbox(
             "Convert To",
-            ("GBP", 
+            ("GBP (British Pound Sterling)", 
              "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS", "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
     
 price = st.sidebar.number_input("Enter price to convert")
 
-st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
+st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv[:2])))
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
 
     # ---------------forex pair selection------------------
