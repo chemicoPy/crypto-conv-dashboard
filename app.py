@@ -66,6 +66,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
+add_logo("img/page_icon.png")
 
   
 from forex_python.converter import CurrencyRates
