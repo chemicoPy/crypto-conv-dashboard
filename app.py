@@ -168,9 +168,121 @@ Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
 if st.sidebar.button("Show Viz!"):
-  st.write("Success!")
+  lim = 1000
+  bybit = ccxt.bybit()
+
+  if instrument=="Select Forex Pair of interest" and Tframe=="Interval of interest":
+    st.write("Kindly navigate to sidebar to see more options...")
+
+  else:
+    klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
+
+    from datetime import datetime, timedelta
+    one_month_ago = datetime.now() - timedelta(days=30)
+    filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
     
-st.sidebar.markdown(
+# convert the klines list to a DataFrame
+    df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+
+# convert the timestamp column to a datetime type
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+
+# set the timestamp column as the index
+    df.set_index('timestamp', inplace=True)
+
+
+# calculate RSI
+    df['rsi'] = ta.rsi(df['close'])
+
+# calculate Stochastics
+    stoch_data = df.copy()
+
+#df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
+#New calculation for Stochastic
+    stoch_data['high'] = stoch_data['high'].rolling(14).max()
+    stoch_data['low'] = stoch_data['low'].rolling(14).min()
+    stoch_data['%k'] = (stoch_data["close"] - stoch_data['low'])*100/(stoch_data['high'] - stoch_data['low'])
+    stoch_data['%d'] = stoch_data['%k'].rolling(3).mean()
+    df['stoch_data'] = stoch_data['%d']
+
+
+# Candlestick plot
+
+    data = [go.Candlestick(x=df.index,
+                       open=df.open,
+                       high=df.high,
+                       low=df.low,
+                       close=df.close)]
+
+    layout = go.Layout(title= f'{instrument} in {Tframe} Candlestick with Range Slider',
+                   xaxis={'rangeslider':{'visible':True}})
+    fig = go.Figure(data=data,layout=layout)
+    plt.show()
+    st.write(fig)
+
+    
+    import plotly.graph_objs as go
+
+# create a line chart using the close data
+    line = go.Scatter(
+        x=df.index,
+        y=df['close'],
+        name='Close',
+        line=dict(color='#17BECF')
+)
+
+# create the layout for the chart
+    layout = go.Layout(
+        title= f'{instrument} in {Tframe} Kline Data',
+    xaxis=dict(
+        title='Time',
+        rangeslider=dict(visible=True)
+    ),
+    yaxis=dict(
+        title='Price (USDT)'
+    )
+)
+
+# create the figure and plot the chart
+    fig = go.Figure(data=[line], layout=layout)
+    plt.show()
+    st.write(fig)
+
+    import plotly.express as px
+
+# create the line chart
+    fig = px.line(df, x=df.index, y=df['rsi'], title=f'{instrument} in {Tframe} Kline Data')
+
+# add the red and green lines
+    fig.add_shape(
+    type='line',
+    x0=df.index[0],
+    x1=df.index[-1],
+    y0=75,
+    y1=75,
+    yref='y',
+    line=dict(color='red', dash='dot')
+)
+        
+    fig.add_shape(
+    type='line',
+    x0=df.index[0],
+    x1=df.index[-1],
+    y0=25,
+    y1=25,
+    yref='y',
+    line=dict(color='green', dash='dot')
+)
+
+# set the y-axis range to include 0 and 100
+    fig.update_layout(yaxis=dict(range=[0, 100]))
+
+    plt.show()
+    st.write(fig)
+
+    st.write(df)
+    
+ st.sidebar.markdown(
 
     """
     -----------
@@ -194,118 +306,5 @@ st.sidebar.markdown(
     """)
 
 
-lim = 1000
-bybit = ccxt.bybit()
-
-if instrument=="Select Forex Pair of interest" and Tframe=="Interval of interest":
-  st.write("Kindly navigate to sidebar to see more options...")
-
-else:
-  klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
-
-  from datetime import datetime, timedelta
-  one_month_ago = datetime.now() - timedelta(days=30)
-  filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
-    
-# convert the klines list to a DataFrame
-  df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-
-# convert the timestamp column to a datetime type
-  df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
-
-# set the timestamp column as the index
-  df.set_index('timestamp', inplace=True)
-
-
-# calculate RSI
-  df['rsi'] = ta.rsi(df['close'])
-
-# calculate Stochastics
-  stoch_data = df.copy()
-
-#df['stoch_k'], df['stoch_d'] = ta.stoch(df['high'], df['low'], df['close'])
-#New calculation for Stochastic
-  stoch_data['high'] = stoch_data['high'].rolling(14).max()
-  stoch_data['low'] = stoch_data['low'].rolling(14).min()
-  stoch_data['%k'] = (stoch_data["close"] - stoch_data['low'])*100/(stoch_data['high'] - stoch_data['low'])
-  stoch_data['%d'] = stoch_data['%k'].rolling(3).mean()
-  df['stoch_data'] = stoch_data['%d']
-
-
-# Candlestick plot
-
-  data = [go.Candlestick(x=df.index,
-                       open=df.open,
-                       high=df.high,
-                       low=df.low,
-                       close=df.close)]
-
-  layout = go.Layout(title= f'{instrument} in {Tframe} Candlestick with Range Slider',
-                   xaxis={'rangeslider':{'visible':True}})
-  fig = go.Figure(data=data,layout=layout)
-  plt.show()
-  st.write(fig)
-
-    
-  import plotly.graph_objs as go
-
-# create a line chart using the close data
-  line = go.Scatter(
-        x=df.index,
-        y=df['close'],
-        name='Close',
-        line=dict(color='#17BECF')
-)
-
-# create the layout for the chart
-  layout = go.Layout(
-        title= f'{instrument} in {Tframe} Kline Data',
-    xaxis=dict(
-        title='Time',
-        rangeslider=dict(visible=True)
-    ),
-    yaxis=dict(
-        title='Price (USDT)'
-    )
-)
-
-# create the figure and plot the chart
-  fig = go.Figure(data=[line], layout=layout)
-  plt.show()
-  st.write(fig)
-
-  import plotly.express as px
-
-# create the line chart
-  fig = px.line(df, x=df.index, y=df['rsi'], title=f'{instrument} in {Tframe} Kline Data')
-
-# add the red and green lines
-  fig.add_shape(
-    type='line',
-    x0=df.index[0],
-    x1=df.index[-1],
-    y0=75,
-    y1=75,
-    yref='y',
-    line=dict(color='red', dash='dot')
-)
-        
-  fig.add_shape(
-    type='line',
-    x0=df.index[0],
-    x1=df.index[-1],
-    y0=25,
-    y1=25,
-    yref='y',
-    line=dict(color='green', dash='dot')
-)
-
-# set the y-axis range to include 0 and 100
-  fig.update_layout(yaxis=dict(range=[0, 100]))
-
-  plt.show()
-  st.write(fig)
-
-  st.write(df)
 
    
