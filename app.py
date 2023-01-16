@@ -62,7 +62,16 @@ st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 # disable warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
-    
+
+st.markdown(
+   f”””
+   <style>
+   p {
+   background-image: url(‘img/page_icon.png’);
+   }
+   </style>
+   ”””,
+   unsafe_allow_html=True)
 
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
