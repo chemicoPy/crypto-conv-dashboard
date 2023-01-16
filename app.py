@@ -144,7 +144,7 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 from_conv = st.sidebar.selectbox(
             "Convert From",
             ("BTC (Bitcoin)", 
-"DOGE (DogeCoin", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)","GBP","HUF","PLN","RON","SEK", 
+"DOGE (DogeCoin", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)", 
               "STR (Stellar)"),)
 
 to_conv = st.sidebar.selectbox(
