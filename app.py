@@ -143,10 +143,9 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 
 from_conv = st.sidebar.selectbox(
             "Convert From",
-            ("GBP", 
-"EUR", "NZD", "USD", "NPR","JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-              "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-               "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
+            ("BTC (Bitcoin)", 
+"DOGE (DogeCoin", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)","GBP","HUF","PLN","RON","SEK", 
+              "STR (Stellar)"),)
 
 to_conv = st.sidebar.selectbox(
             "Convert To",
@@ -157,7 +156,7 @@ to_conv = st.sidebar.selectbox(
 price = st.sidebar.number_input("Enter price to convert")
 
 if st.sidebar.button("Convert"):
-  st.sidebar.write("Converted Price = ", simpleConverter.convert(price, str(from_conv), str(to_conv[:3])))
+  st.sidebar.write("Converted Price = ", simpleConverter.convert(price, str(from_conv[:3]), str(to_conv[:3])))
   #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
 
     # ---------------forex pair selection------------------
