@@ -63,24 +63,6 @@ st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
-
-import base64
-def add_bg_from_local(image_file):
-    with open(image_file, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read())
-    st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
-        background-size: cover
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
-add_bg_from_local('img/page_icon.png')
-
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
 
@@ -141,27 +123,51 @@ price = st.number_input("Enter price to convert")
 st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
-st.markdown(
-        """
-        <style>
-            [data-testid="stSidebarNav"] {
-                background-image: url(http://placekitten.com/200/200);
-                background-repeat: no-repeat;
-                padding-top: 120px;
-                background-position: 20px 20px;
-            }
-            [data-testid="stSidebarNav"]::before {
-                content: "My Company Name";
-                margin-left: 20px;
-                margin-top: 20px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }
-        </style>
-        """,
+import base64
+
+@st.cache(allow_output_mutation=True)
+def get_base64_of_bin_file(png_file):
+    with open(png_file, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+
+def build_markup_for_logo(
+    png_file,
+    background_position="50% 10%",
+    margin_top="10%",
+    image_width="60%",
+    image_height="",
+):
+    binary_string = get_base64_of_bin_file(png_file)
+    return """
+            <style>
+                [data-testid="stSidebarNav"] {
+                    background-image: url("data:image/png;base64,%s");
+                    background-repeat: no-repeat;
+                    background-position: %s;
+                    margin-top: %s;
+                    background-size: %s %s;
+                }
+            </style>
+            """ % (
+        binary_string,
+        background_position,
+        margin_top,
+        image_width,
+        image_height,
+    )
+
+
+def add_logo(png_file):
+    logo_markup = build_markup_for_logo(png_file)
+    st.markdown(
+        logo_markup,
         unsafe_allow_html=True,
     )
+
+add_logo("img/page_icon.png")
+
   
     # ------ layout setting---------------------------
 st.sidebar.markdown(
