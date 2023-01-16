@@ -126,9 +126,7 @@ st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), st
     
 
 if st.sidebar.checkbox("Use url", value=True):
-    add_logo("http://placekitten.com/120/120")
-else:
-    add_logo("page_icon.png", height=300)
+    add_logo("https://github.com/chemicoPy/crypto-conv-dashboard/blob/main/img/page_icon.png")
 
   
     # ------ layout setting---------------------------
