@@ -167,7 +167,7 @@ instrument = st.sidebar.selectbox(
 Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
-if st.button("Show Viz!"):
+if st.sidebar.button("Show Viz!"):
   st.write("Success!")
     
 st.sidebar.markdown(
