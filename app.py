@@ -64,7 +64,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 st.title('Crypto Converter to Local Currency')
-st.subheader("Navigate to side bar to see more options as well as full project info")
+st.subheader("Navigate to side bar to see full project info as well as options to choose from, to get started!")
 
   
 from forex_python.converter import CurrencyRates
