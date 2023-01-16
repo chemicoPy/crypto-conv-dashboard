@@ -21,7 +21,7 @@ schedule
 statsmodels
 
 streamlit==0.82.0
-streamlit_extras
+streamlit-extras
 
 
 
