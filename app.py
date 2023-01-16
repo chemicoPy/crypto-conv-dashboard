@@ -22,7 +22,7 @@ import io
 from pandas.io.json import json_normalize
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
-
+from streamlit_extras.app_logo import add_logo
 import ccxt,pytz,time,schedule, requests
 from datetime import datetime, timedelta, date
 import pandas_ta as ta
