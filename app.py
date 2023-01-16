@@ -156,7 +156,7 @@ to_conv = st.sidebar.selectbox(
     
 price = st.sidebar.number_input("Enter price to convert")
 
-st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv[:2])))
+st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv[:3])))
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
 
     # ---------------forex pair selection------------------
