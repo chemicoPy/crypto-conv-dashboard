@@ -161,9 +161,10 @@ st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_c
   
 st.write("\n")  # add spacing   
 
-    
+st.sidebar.markdown("## Visualization")    
 instrument = st.sidebar.selectbox(
-        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
+        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT",
+             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "SOL/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
 Tframe = st.sidebar.selectbox(
         '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
