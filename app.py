@@ -67,9 +67,6 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see more options as well as full project info")
 
-if st.checkbox("See Logo", value=True):
-    add_logo("img/page_icon.png")
-
   
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
@@ -143,7 +140,9 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 st.write("\n")  # add spacing   
 
 
-
+if st.sidebar.checkbox("See Logo", value=True):
+    add_logo("img/page_icon.png")
+    
 instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
 Tframe = st.sidebar.selectbox(
