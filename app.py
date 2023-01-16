@@ -125,7 +125,12 @@ st.write("Converted price = ", simpleConverter.convert(price, str(from_conv), st
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 
- 
+if st.sidebar.checkbox("Use url", value=True):
+    add_logo("http://placekitten.com/120/120")
+else:
+    add_logo("page_icon.png", height=300)
+
+  
     # ------ layout setting---------------------------
 st.sidebar.markdown(
             """
@@ -139,9 +144,6 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
   
 st.write("\n")  # add spacing   
 
-
-if st.sidebar.checkbox("See Logo", value=True):
-    add_logo("img/page_icon.png")
     
 instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT","DOGE/USDT"], index=0)
