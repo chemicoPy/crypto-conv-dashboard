@@ -151,8 +151,8 @@ from_conv = st.sidebar.selectbox(
 to_conv = st.sidebar.selectbox(
             "Convert To",
             ("GBP (British Pound Sterling)", 
-             "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS", "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
+             "EUR (Euro)", "NZD (New Zealand Dollar)", "USD (United States Dollar)", "NPR (Nepalese Rupee)", "JPY (Japanese Yen)","BGN (Bulgarian Lev)","CZK (Czech Republic Koruna)","DKK (Danish Krone)","HUF (Hungarian Forint)","PLN (Polish Zloty)","RON (Romanian Leu)","SEK (Swedish Krona)", 
+                                                  "CHF (Swiss Franc)","ISK (Icelandic Króna)","NOK (Norwegian Krone)","TRY (Turkish Lira)","AUD (Australian Dollar)","BRL (Brazilian Real)","CAD (Canadian Dollar)","CNY (Chinese Yuan)","HKD (Hong Kong Dollar)","IDR (Indonesian Rupiah)","ILS (Israeli New Sheqel)", "INR (Indian Rupee)","KRW (South Korean Won)","MXN (Mexican Peso)","MYR (Malaysian Ringgit)","PHP (Philippine Peso)","SGD (Singapore Dollar)", "THB (Thai Baht)", "ZAR (South African Rand)", "NGN (Nigerian Naira)"),)
     
 price = st.sidebar.number_input("Enter price to convert")
 
