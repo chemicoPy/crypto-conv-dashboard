@@ -145,7 +145,7 @@ from_conv = st.sidebar.selectbox(
             "Convert From",
             ("BTC (Bitcoin)", 
 "DOGE (DogeCoin", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)", 
-              "STR (Stellar)"),)
+              "STR (Stellar)", "EAC (EarthCoin)"),)
 
 to_conv = st.sidebar.selectbox(
             "Convert To",
