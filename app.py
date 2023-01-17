@@ -275,7 +275,7 @@ st.sidebar.markdown(
     -----------
     # Other Apps
  
-    1. [Weather App](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
+    1. [Weather App](https://chemicopy-weather-app-dashboard-app-6mbfv4.streamlit.app/)
     2. [Immigration Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
     3. [Crime Dashboard](https://www.movavi.com/support/how-to/how-to-convert-music-to-wav.html)
     """)
