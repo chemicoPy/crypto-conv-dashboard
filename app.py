@@ -170,8 +170,8 @@ st.write("\n")  # add spacing
 
 #st.sidebar.markdown("## Visualization")    
 #instrument = st.sidebar.selectbox(
-        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT",
-             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
+#        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT",
+#             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
 
 
 if st.sidebar.button("Show Viz!"):
