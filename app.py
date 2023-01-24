@@ -139,6 +139,42 @@ Tframe = st.sidebar.selectbox(
 #             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
 
 
+instrument_conv = instrument[:instrument.index("/")]
+to_conv_2 = to_conv[:3]
+
+res = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : st.secrets["api_key"],
+                    "symbols" : instrument_conv,
+                    "show_alternatives": True
+                        }
+                )
+
+rates_res = res.json()["rates"]
+
+res_2 = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : st.secrets["api_key"],
+                    "symbols" : to_conv_2,
+                    "show_alternatives": True
+                        }
+                )
+
+rates_res_2 = res_2.json()["rates"]
+
+conv_factor_1 = rates_res[instrument_conv]
+conv_factor_2 = rates_res_2[to_conv_2]
+    
+st.sidebar.markdown("## Visualization") 
+price = st.sidebar.number_input("Enter price to convert")
+converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
+
+
+if st.button("Convert"):
+  st.write("Converted Price = ", converted_price)
+    
 if st.sidebar.button("Show Viz!"):
   lim = 1000
   bybit = ccxt.bybit()
@@ -296,10 +332,6 @@ if st.sidebar.button("Show Viz!"):
 
     st.write(df)
     
-    price = st.number_input("Enter price to convert")
-    converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
-    if st.button("Convert"):
-        st.write("Converted Price = ", converted_price)
     
 st.sidebar.markdown(
 
