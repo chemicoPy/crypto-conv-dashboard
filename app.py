@@ -155,6 +155,34 @@ to_conv = st.sidebar.selectbox(
 Tframe = st.sidebar.selectbox(
         'Interval', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
+instrument_conv = instrument[:instrument.index("/")]
+to_conv_2 = to_conv[:3]
+
+res = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : instrument_conv,
+                    "show_alternatives": True
+                        }
+                )
+
+rates_res = res.json()["rates"]
+
+res_2 = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : to_conv_2,
+                    "show_alternatives": True
+                        }
+                )
+
+rates_res_2 = res_2.json()["rates"]
+
+conv_factor_1 = rates_res[instrument_conv]
+conv_factor_2 = rates_res_2[to_conv_2]
+
 #st.sidebar.markdown("## Visualization")    
 #instrument = st.sidebar.selectbox(
 #        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT",
@@ -177,6 +205,20 @@ if st.sidebar.button("Show Viz!"):
     
 # convert the klines list to a DataFrame
     df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+  
+# Converting close price to local currency here
+
+    for i in range(0, len(df['close'])):
+        df['close'][i]= float(df['close'][i]) * (1/(conv_factor_1) * (conv_factor_2))
+    
+    for i in range(0, len(df['open'])):
+        df['open'][i]= float(df['open'][i]) * (1/(conv_factor_1) * (conv_factor_2))
+        
+    for i in range(0, len(df['high'])):
+        df['high'][i]= float(df['high'][i]) * (1/(conv_factor_1) * (conv_factor_2))
+    
+    for i in range(0, len(df['low'])):
+        df['low'][i]= float(df['low'][i]) * (1/(conv_factor_1) * (conv_factor_2))
 
 # convert the timestamp column to a datetime type
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
@@ -276,9 +318,10 @@ if st.sidebar.button("Show Viz!"):
 
     st.write(df)
     
-    #price = st.sidebar.number_input("Enter price to convert")
-    #st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
-    #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
+    price = st.sidebar.number_input("Enter price to convert")
+    converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
+    if st.button("Convert"):
+        st.write("Converted Price = ", converted_price)
     
 st.sidebar.markdown(
 
