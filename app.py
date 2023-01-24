@@ -264,9 +264,9 @@ if st.sidebar.button("Show Viz!"):
 
     st.write(df)
     
-    price = st.number_input("Enter price to convert")
+    price = st.text_input("Enter price to convert")
     if st.button("Convert"):
-        st.write("Converted Price = ", simpleConverter.convert(price, str(instrument[:3]), str(to_conv[:3])))
+        st.write("Converted Price = ", simpleConverter.convert(float(price), str(instrument[:3]), str(to_conv[:3])))
         #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 st.sidebar.markdown(
