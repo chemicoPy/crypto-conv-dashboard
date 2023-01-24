@@ -126,7 +126,7 @@ st.sidebar.markdown(
   
 st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
 
-from_conv = st.sidebar.selectbox(
+instrument = st.sidebar.selectbox(
             "Convert From",
             ("MATIC/USDT","BTC/USDT","ETH/USDT",
              "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"),)
@@ -266,7 +266,7 @@ if st.sidebar.button("Show Viz!"):
     
     price = st.number_input("Enter price to convert")
     if st.button("Convert"):
-        st.write("Converted Price = ", simpleConverter.convert(price, str(from_conv[:3]), str(to_conv[:3])))
+        st.write("Converted Price = ", simpleConverter.convert(price, str(instrument[:3]), str(to_conv[:3])))
         #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 st.sidebar.markdown(
