@@ -71,35 +71,12 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
 
-class CurrencyConverter:
-    def __init__(self, YOUR_APP_ID, symbols):
-            self.YOUR_APP_ID = st.secrets["api_key"]
-            self.symbols = symbols
-            self._symbols = ",".join([str(s) for s in symbols])
-
-            r = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : self.YOUR_APP_ID,
-                    "symbols" : self._symbols,
-                    "show_alternatives": True
-                        }
-                )
-            self.rates_ = r.json()["rates"]
-            self.rates_["USD"] = 1
-
-    def convert(self, value, symbol_from, symbol_to):
-        try:
-            return value * 1/self.rates_.get(symbol_from) * self.rates_.get(symbol_to)
-        except TypeError:
-            print("Error")
-            return None
 
 YOUR_APP_ID = st.secrets["api_key"]
-simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
-             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"])
+#simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
+#             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
+#                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
+#                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"])
 
 
 
@@ -176,7 +153,7 @@ if st.sidebar.button("Show Viz!"):
     res = requests.get(
                 "https://openexchangerates.org/api/latest.json",
                 params = {
-                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "app_id" : st.secrets["api_key"],
                     "symbols" : instrument_conv,
                     "show_alternatives": True
                         }
@@ -187,7 +164,7 @@ if st.sidebar.button("Show Viz!"):
     res_2 = requests.get(
                 "https://openexchangerates.org/api/latest.json",
                 params = {
-                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "app_id" : st.secrets["api_key"],
                     "symbols" : to_conv_2,
                     "show_alternatives": True
                         }
