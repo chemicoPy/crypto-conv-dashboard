@@ -28,6 +28,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from pprint import pprint
 import statsmodels.regression.linear_model as rg
+import datetime
   
 
 # Desiging & implementing changes to the standard streamlit UI/UX
@@ -167,7 +168,9 @@ if st.sidebar.button("Show Viz!"):
     df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
 # convert the timestamp column to a datetime type
-    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+     df['timestamp'] = datetime.date.fromtimestamp(df['timestamp'])
+    #df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+    #datetime.date.fromtimestamp(item["dt"])
 
 # set the timestamp column as the index
     df.set_index('timestamp', inplace=True)
