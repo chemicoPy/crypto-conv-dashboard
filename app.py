@@ -73,9 +73,12 @@ st.subheader("Navigate to side bar to see full project info as well as options t
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
 
+
+
+
 class CurrencyConverter:
     def __init__(self, YOUR_APP_ID, symbols):
-            self.YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
+            self.YOUR_APP_ID = st.secrets["api_key"]
             self.symbols = symbols
             self._symbols = ",".join([str(s) for s in symbols])
 
@@ -97,7 +100,7 @@ class CurrencyConverter:
             print("Error")
             return None
 
-YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
+YOUR_APP_ID = st.secrets["api_key"]
 simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
                                                   "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
