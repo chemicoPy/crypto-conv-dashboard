@@ -331,7 +331,7 @@ price = st.sidebar.number_input("Enter price to convert")
 converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
 
 if st.sidebar.button("Convert"):
-  st.write("Converted Price = ", converted_price)
+  st.sidebar.write("Converted Price = ", converted_price)
   
   
 st.sidebar.markdown(
