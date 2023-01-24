@@ -265,6 +265,30 @@ if st.sidebar.button("Show Viz!"):
     st.write(fig)
 
     st.write(df)
+ 
+instrument_conv = instrument[:instrument.index("/")]
+res = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : instrument_conv,
+                    "show_alternatives": True
+                        }
+                )
+
+rates_res = res.json()["rates"]
+  #print(rates_res[symbol_from])
+to_conv_2 = to_conv[:3]
+res_2 = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : to_conv_2,
+                    "show_alternatives": True
+                        }
+                )
+
+rates_res_2 = res_2.json()["rates"]
     
 price = st.number_input("Enter price to convert")
 converted_price = float(price) * (1/(rates_res[instrument_conv]) * (rates_res_2[to_conv_2]))
