@@ -162,11 +162,10 @@ if st.sidebar.button("Show Viz!"):
 
     rates_res_2 = res_2.json()["rates"]
     
-    arr = df['close']
-    for i in range(0, len(arr)):
-        arr[i]= float(arr[i]) * (1/(rates_res[instrument_conv]) * (rates_res_2[to_conv_2]))
     
-    st.write(arr)
+    for i in range(0, len(df['close'])):
+        df['close'][i]= float(df['close'][i]) * (1/(rates_res[instrument_conv]) * (rates_res_2[to_conv_2]))
+   
   
 # convert the timestamp column to a datetime type
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
