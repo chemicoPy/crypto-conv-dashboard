@@ -34,6 +34,9 @@ import statsmodels.regression.linear_model as rg
 
 # Desiging & implementing changes to the standard streamlit UI/UX
 st.set_page_config(page_icon="img/page_icon.png")    #Logo
+
+st.title('Crypto Converter to Local Currency')
+
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
 # Design change hyperlink href link color
@@ -63,7 +66,7 @@ st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
-st.title('Crypto Converter to Local Currency')
+
 st.subheader("Navigate to side bar to see full project info as well as options to choose from, to get started!")
 
   
