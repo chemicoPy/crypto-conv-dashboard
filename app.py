@@ -147,20 +147,19 @@ st.sidebar.markdown(
   
 st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to the sidebar container
 
-from_conv = st.sidebar.selectbox(
+instrument = st.sidebar.selectbox(
             "Convert From",
-            ("GBP", 
-"EUR", "NZD", "USD", "NPR","JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-              "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-               "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
+            ("MATIC/USDT","BTC/USDT","ETH/USDT",
+             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"),)
 
 to_conv = st.sidebar.selectbox(
             "Convert To",
-            ("GBP", 
-             "EUR", "NZD", "USD", "NPR", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS", "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"),)
-    
-price = st.sidebar.number_input("Enter price to convert")
+            ("GBP (British Pound Sterling)", 
+             "EUR (Euro)", "NZD (New Zealand Dollar)", "USD (United States Dollar)", "NPR (Nepalese Rupee)", "JPY (Japanese Yen)","BGN (Bulgarian Lev)","CZK (Czech Republic Koruna)","DKK (Danish Krone)","HUF (Hungarian Forint)","PLN (Polish Zloty)","RON (Romanian Leu)","SEK (Swedish Krona)", 
+                                                  "CHF (Swiss Franc)","ISK (Icelandic Króna)","NOK (Norwegian Krone)","TRY (Turkish Lira)","AUD (Australian Dollar)","BRL (Brazilian Real)","CAD (Canadian Dollar)","CNY (Chinese Yuan)","HKD (Hong Kong Dollar)","IDR (Indonesian Rupiah)","ILS (Israeli New Sheqel)", "INR (Indian Rupee)","KRW (South Korean Won)","MXN (Mexican Peso)","MYR (Malaysian Ringgit)","PHP (Philippine Peso)","SGD (Singapore Dollar)", "THB (Thai Baht)", "ZAR (South African Rand)", "NGN (Nigerian Naira)"),)   
+Tframe = st.sidebar.selectbox(
+        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
+
 
 st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_conv), str(to_conv)))
 #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
@@ -169,12 +168,11 @@ st.sidebar.write("Converted price = ", simpleConverter.convert(price, str(from_c
   
 st.write("\n")  # add spacing   
 
-st.sidebar.markdown("## Visualization")    
-instrument = st.sidebar.selectbox(
+#st.sidebar.markdown("## Visualization")    
+#instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT",
              "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
-Tframe = st.sidebar.selectbox(
-        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
+
 
 if st.sidebar.button("Show Viz!"):
   lim = 1000
@@ -290,6 +288,8 @@ if st.sidebar.button("Show Viz!"):
     st.write(fig)
 
     st.write(df)
+    
+    #price = st.sidebar.number_input("Enter price to convert")
     
 st.sidebar.markdown(
 
