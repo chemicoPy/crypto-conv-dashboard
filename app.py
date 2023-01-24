@@ -67,15 +67,9 @@ st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
-
-
-
   
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
-
-
-
 
 class CurrencyConverter:
     def __init__(self, YOUR_APP_ID, symbols):
@@ -160,13 +154,6 @@ to_conv = st.sidebar.selectbox(
                                                   "CHF (Swiss Franc)","ISK (Icelandic Króna)","NOK (Norwegian Krone)","TRY (Turkish Lira)","AUD (Australian Dollar)","BRL (Brazilian Real)","CAD (Canadian Dollar)","CNY (Chinese Yuan)","HKD (Hong Kong Dollar)","IDR (Indonesian Rupiah)","ILS (Israeli New Sheqel)", "INR (Indian Rupee)","KRW (South Korean Won)","MXN (Mexican Peso)","MYR (Malaysian Ringgit)","PHP (Philippine Peso)","SGD (Singapore Dollar)", "THB (Thai Baht)", "ZAR (South African Rand)", "NGN (Nigerian Naira)"),)   
 Tframe = st.sidebar.selectbox(
         'Interval', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
-
-
-
-
-    # ---------------forex pair selection------------------
-  
-st.write("\n")  # add spacing   
 
 #st.sidebar.markdown("## Visualization")    
 #instrument = st.sidebar.selectbox(
