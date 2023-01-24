@@ -69,30 +69,6 @@ st.subheader("Navigate to side bar to see full project info as well as options t
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
 
-class CurrencyConverter:
-    def __init__(self, YOUR_APP_ID, symbols):
-            self.YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
-            self.symbols = symbols
-            self._symbols = ",".join([str(s) for s in symbols])
-
-            r = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : self.YOUR_APP_ID,
-                    "symbols" : self._symbols,
-                    "show_alternatives": True
-                        }
-                )
-            self.rates_ = r.json()["rates"]
-            self.rates_["USD"] = 1
-
-    def convert(self, value, symbol_from, symbol_to):
-        try:
-            return value * 1/self.rates_.get(symbol_from) * self.rates_.get(symbol_to)
-        except TypeError:
-            print("Error")
-            return None
-
 YOUR_APP_ID = "5b709615dfbf4532bb3296a5ea23c7c6"
 simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
              "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
@@ -165,6 +141,39 @@ if st.sidebar.button("Show Viz!"):
 # convert the klines list to a DataFrame
     df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
+  #Converting close price to local currency here
+  
+    instrument_conv = instrument[:3]
+    res = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : instrument_conv,
+                    "show_alternatives": True
+                        }
+                )
+
+    rates_res = res.json()["rates"]
+  #print(rates_res[symbol_from])
+
+    to_conv_2 = to_conv[:3]
+    res_2 = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : to_conv_2,
+                    "show_alternatives": True
+                        }
+                )
+
+    rates_res_2 = res_2.json()["rates"]
+    
+    arr = df['close']
+    for i in range(0, len(arr)):
+        arr[i]= float(arr[i]) * (1/(rates_res[instrument_conv]) * (rates_res_2[to_conv_2]))
+    
+    st.write(arr)
+  
 # convert the timestamp column to a datetime type
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
     #datetime.date.fromtimestamp(item["dt"])
