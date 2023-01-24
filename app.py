@@ -128,9 +128,8 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 
 from_conv = st.sidebar.selectbox(
             "Convert From",
-            ("BTC (Bitcoin)", 
-"DOGE (DogeCoin)", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)", 
-              "STR (Stellar)", "EAC (EarthCoin)"),)
+            ("MATIC/USDT","BTC/USDT","ETH/USDT",
+             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"),)
 
 to_conv = st.sidebar.selectbox(
             "Convert To",
@@ -144,6 +143,10 @@ Tframe = st.sidebar.selectbox(
 #instrument = st.sidebar.selectbox(
 #        '', ["Select Forex Pair of interest", "MATIC/USDT","BTC/USDT","ETH/USDT",
 #             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
+
+#"BTC (Bitcoin)", 
+#"DOGE (DogeCoin)", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)", 
+#              "STR (Stellar)", "EAC (EarthCoin)"
 
 if st.sidebar.button("Show Viz!"):
   lim = 1000
