@@ -166,10 +166,6 @@ rates_res_2 = res_2.json()["rates"]
 
 conv_factor_1 = rates_res[instrument_conv]
 conv_factor_2 = rates_res_2[to_conv_2]
-    
-st.sidebar.markdown("## Quick Conversion") 
-price = st.sidebar.number_input("Enter price to convert")
-converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
 
     
 if st.sidebar.button("Show Viz!"):
@@ -329,6 +325,10 @@ if st.sidebar.button("Show Viz!"):
 
     st.write(df)
  
+
+st.sidebar.markdown("## Quick Conversion") 
+price = st.sidebar.number_input("Enter price to convert")
+converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
 
 if st.sidebar.button("Convert"):
   st.write("Converted Price = ", converted_price)
