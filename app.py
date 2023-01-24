@@ -36,6 +36,7 @@ import statsmodels.regression.linear_model as rg
 st.set_page_config(page_icon="img/page_icon.png")    #Logo
 
 st.title('Crypto Converter to Local Currency')
+st.subheader("Navigate to side bar to see full project info as well as options to choose from, to get started!")
 
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
@@ -67,7 +68,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 
-st.subheader("Navigate to side bar to see full project info as well as options to choose from, to get started!")
+
 
   
 from forex_python.converter import CurrencyRates
@@ -296,7 +297,7 @@ st.sidebar.markdown(
 
     """
     -----------
-    # Other Apps
+    # Other App(s):
  
     1. [Weather App](https://chemicopy-weather-app-dashboard-app-6mbfv4.streamlit.app/)
     
