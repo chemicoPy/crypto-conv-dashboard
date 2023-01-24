@@ -168,8 +168,7 @@ if st.sidebar.button("Show Viz!"):
     df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
 # convert the timestamp column to a datetime type
-    df['timestamp'] = datetime.date.fromtimestamp(df['timestamp'])
-    #df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
     #datetime.date.fromtimestamp(item["dt"])
 
 # set the timestamp column as the index
