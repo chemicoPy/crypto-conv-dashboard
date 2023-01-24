@@ -139,11 +139,11 @@ to_conv = st.sidebar.selectbox(
                                                   "CHF (Swiss Franc)","ISK (Icelandic Króna)","NOK (Norwegian Krone)","TRY (Turkish Lira)","AUD (Australian Dollar)","BRL (Brazilian Real)","CAD (Canadian Dollar)","CNY (Chinese Yuan)","HKD (Hong Kong Dollar)","IDR (Indonesian Rupiah)","ILS (Israeli New Sheqel)", "INR (Indian Rupee)","KRW (South Korean Won)","MXN (Mexican Peso)","MYR (Malaysian Ringgit)","PHP (Philippine Peso)","SGD (Singapore Dollar)", "THB (Thai Baht)", "ZAR (South African Rand)", "NGN (Nigerian Naira)"),)
 
 Tframe = st.sidebar.selectbox(
-        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0) 
+        'Interval', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0) 
    
-instrument = st.sidebar.selectbox(
-        '', ["Select Forex Pair of interest", "MATIC/USDT","BTC/USDT","ETH/USDT",
-             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
+#instrument = st.sidebar.selectbox(
+#        '', ["Select Forex Pair of interest", "MATIC/USDT","BTC/USDT","ETH/USDT",
+#             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
 
 if st.sidebar.button("Show Viz!"):
   lim = 1000
