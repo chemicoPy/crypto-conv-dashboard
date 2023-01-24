@@ -155,33 +155,6 @@ to_conv = st.sidebar.selectbox(
 Tframe = st.sidebar.selectbox(
         'Interval', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
-instrument_conv = instrument[:instrument.index("/")]
-to_conv_2 = to_conv[:3]
-
-res = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
-                    "symbols" : instrument_conv,
-                    "show_alternatives": True
-                        }
-                )
-
-rates_res = res.json()["rates"]
-
-res_2 = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
-                    "symbols" : to_conv_2,
-                    "show_alternatives": True
-                        }
-                )
-
-rates_res_2 = res_2.json()["rates"]
-
-conv_factor_1 = rates_res[instrument_conv]
-conv_factor_2 = rates_res_2[to_conv_2]
 
 #st.sidebar.markdown("## Visualization")    
 #instrument = st.sidebar.selectbox(
@@ -197,6 +170,34 @@ if st.sidebar.button("Show Viz!"):
     st.write("Kindly navigate to sidebar to see more options...")
 
   else:
+    instrument_conv = instrument[:instrument.index("/")]
+    to_conv_2 = to_conv[:3]
+
+    res = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : instrument_conv,
+                    "show_alternatives": True
+                        }
+                )
+
+    rates_res = res.json()["rates"]
+
+    res_2 = requests.get(
+                "https://openexchangerates.org/api/latest.json",
+                params = {
+                    "app_id" : "5b709615dfbf4532bb3296a5ea23c7c6",
+                    "symbols" : to_conv_2,
+                    "show_alternatives": True
+                        }
+                )
+
+    rates_res_2 = res_2.json()["rates"]
+
+    conv_factor_1 = rates_res[instrument_conv]
+    conv_factor_2 = rates_res_2[to_conv_2]
+
     klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
     from datetime import datetime, timedelta
