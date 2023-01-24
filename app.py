@@ -137,7 +137,7 @@ if st.sidebar.button("Show Viz!"):
 
   #Converting close price to local currency here
   
-    instrument_conv = instrument[:3]
+    instrument_conv = instrument[:instrument.index("/")]
     res = requests.get(
                 "https://openexchangerates.org/api/latest.json",
                 params = {
@@ -269,7 +269,7 @@ if st.sidebar.button("Show Viz!"):
     
     price = st.text_input("Enter price to convert")
     if st.button("Convert"):
-        st.write("Converted Price = ", simpleConverter.convert(float(price), str(instrument[:3]), str(to_conv[:3])))
+        st.write("Converted Price = ", simpleConverter.convert(float(price), str(instrument[:string.index("/")]), str(to_conv[:3])))
         #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 st.sidebar.markdown(
