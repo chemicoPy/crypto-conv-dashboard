@@ -267,8 +267,10 @@ if st.sidebar.button("Show Viz!"):
     st.write(df)
     
     price = st.text_input("Enter price to convert")
+    converted_price = float(price) * (1/(rates_res[instrument_conv]) * (rates_res_2[to_conv_2]))
+    
     if st.button("Convert"):
-        st.write("Converted Price = ", simpleConverter.convert(float(price), str(instrument[:string.index("/")]), str(to_conv[:3])))
+        st.write("Converted Price = ", converted_price)
         #st.write("Converted price= ", (c.get_symbol(to_conv), simpleConverter.convert(price, from_conv, to_conv)) 
     
 st.sidebar.markdown(
