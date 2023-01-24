@@ -129,7 +129,7 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 from_conv = st.sidebar.selectbox(
             "Convert From",
             ("BTC (Bitcoin)", 
-"DOGE (DogeCoin", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)", 
+"DOGE (DogeCoin)", "ETH (Ethereum)", "LTC (LiteCoin)","XRP (Ripple)","XPM (Primecoin)","VTC (VertCoin)","DASH (Dash)","BTS (BitShares)","FTC (Feathercoin)","EMC (Emercoin)", 
               "STR (Stellar)", "EAC (EarthCoin)"),)
 
 to_conv = st.sidebar.selectbox(
@@ -137,18 +137,13 @@ to_conv = st.sidebar.selectbox(
             ("GBP (British Pound Sterling)", 
              "EUR (Euro)", "NZD (New Zealand Dollar)", "USD (United States Dollar)", "NPR (Nepalese Rupee)", "JPY (Japanese Yen)","BGN (Bulgarian Lev)","CZK (Czech Republic Koruna)","DKK (Danish Krone)","HUF (Hungarian Forint)","PLN (Polish Zloty)","RON (Romanian Leu)","SEK (Swedish Krona)", 
                                                   "CHF (Swiss Franc)","ISK (Icelandic Króna)","NOK (Norwegian Krone)","TRY (Turkish Lira)","AUD (Australian Dollar)","BRL (Brazilian Real)","CAD (Canadian Dollar)","CNY (Chinese Yuan)","HKD (Hong Kong Dollar)","IDR (Indonesian Rupiah)","ILS (Israeli New Sheqel)", "INR (Indian Rupee)","KRW (South Korean Won)","MXN (Mexican Peso)","MYR (Malaysian Ringgit)","PHP (Philippine Peso)","SGD (Singapore Dollar)", "THB (Thai Baht)", "ZAR (South African Rand)", "NGN (Nigerian Naira)"),)
-    
 
-    # ---------------forex pair selection------------------
-  
-st.write("\n")  # add spacing   
-
-st.sidebar.markdown("## Visualization")    
+Tframe = st.sidebar.selectbox(
+        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0) 
+   
 instrument = st.sidebar.selectbox(
         '', ["Select Forex Pair of interest", "MATIC/USDT","BTC/USDT","ETH/USDT",
              "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
-Tframe = st.sidebar.selectbox(
-        '', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
 if st.sidebar.button("Show Viz!"):
   lim = 1000
