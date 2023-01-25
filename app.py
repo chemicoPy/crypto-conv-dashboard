@@ -17,7 +17,6 @@ from numpy import *
 import json
 from pandas import DataFrame, Series
 from numpy.random import randn
-
 import io
 from pandas.io.json import json_normalize
 import matplotlib.pyplot as plt
@@ -334,6 +333,12 @@ converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
 
 if st.sidebar.button("Convert"):
   st.sidebar.write("Converted Price = ", converted_price)
+  
+  
+  
+  
+  
+  
   
   
 st.sidebar.markdown(
