@@ -173,16 +173,21 @@ if st.sidebar.button("Show Viz!"):
     conv_factor_1 = rates_res[instrument_conv]
     conv_factor_2 = rates_res_2[to_conv_2]
     
-    intrument_for_data = instrument.replace("/","")
+    klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
-    klines = bybit.fetch_ohlcv(intrument_for_data, timeframe=Tframe, limit= lim, since=None)
-
+# filter klines to only include data from the past month
     from datetime import datetime, timedelta
-    one_month_ago = datetime.now() - timedelta(days=30)
+    one_month_ago = datetime.now() - timedelta(days=1500)
     filtered_klines = [kline for kline in klines if datetime.fromtimestamp(kline[0]/1000) >= one_month_ago]
-    
+
 # convert the klines list to a DataFrame
     df = pd.DataFrame(filtered_klines, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+
+# convert the timestamp column to a datetime type
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+
+# set the timestamp column as the index
+    df.set_index('timestamp', inplace=True)
   
 # Converting close price to local currency here
 
@@ -197,13 +202,6 @@ if st.sidebar.button("Show Viz!"):
     
     for i in range(0, len(df['low'])):
         df['low'][i]= float(df['low'][i]) * (1/(conv_factor_1) * (conv_factor_2))
-
-# convert the timestamp column to a datetime type
-    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
-
-# set the timestamp column as the index
-    df.set_index('timestamp', inplace=True)
-
 
 # calculate RSI
     df['rsi'] = ta.rsi(df['close'])
