@@ -121,8 +121,8 @@ st.sidebar.markdown("## Select Crypto pair & Interval below") # add a title to t
 
 instrument = st.sidebar.selectbox(
             "Convert From",
-            ("MATIC/USDT","BTC/USDT","ETH/USDT",
-             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT"),)
+            ("BTC/USDT","ETH/USDT",
+             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "XAU/USDT", "LTC/USDT", "SHIB/USDT", "MATIC/USDT"),)
 
 to_conv = st.sidebar.selectbox(
             "Convert To",
