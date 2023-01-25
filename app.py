@@ -203,8 +203,10 @@ if st.sidebar.button("Show Viz!"):
 
     conv_factor_1 = rates_res[instrument_conv]
     conv_factor_2 = rates_res_2[to_conv_2]
+    
+    intrument_for_data = instrument.replace("/","")
 
-    klines = bybit.fetch_ohlcv(instrument_conv, timeframe=Tframe, limit= lim, since=None)
+    klines = bybit.fetch_ohlcv(intrument_for_data, timeframe=Tframe, limit= lim, since=None)
 
     from datetime import datetime, timedelta
     one_month_ago = datetime.now() - timedelta(days=30)
