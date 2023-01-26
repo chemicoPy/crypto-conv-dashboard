@@ -44,12 +44,6 @@ from pylivecoinwatch import LiveCoinWatchAPI
 
 
 YOUR_APP_ID = st.secrets["api_key"]
-#simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
-#             "EUR", "NZD", "USD", "NPR", "BTC", "JPY","BGN","CZK","DKK","GBP","HUF","PLN","RON","SEK", 
-#                                                  "CHF","ISK","NOK","TRY","AUD","BRL","CAD","CNY","HKD","IDR","ILS",
-#                                                  "INR","KRW","MXN","MYR","PHP","SGD", "THB", "ZAR"])
-
-
 
 c = CurrencyRates()
     
