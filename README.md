@@ -4,4 +4,4 @@
 
 # Project Overview
 
-## [Use App](https://chemicopy-crypto-conv-dashboard-app-10tiqj.streamlit.app/)
+## [Use App](https://crypto-converter.streamlit.app/)
