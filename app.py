@@ -132,40 +132,14 @@ conv_factor_2 = rates_res_2[to_conv_2]
 
     
 if st.sidebar.button("Show Viz!"):
-  lim = 1000
-  bybit = ccxt.bybit()
 
   if instrument=="Select Forex Pair of interest" and Tframe=="Interval of interest":
     st.write("Kindly navigate to sidebar to see more options...")
 
   else:
+    lim = 1000
+    bybit = ccxt.bybit()
     instrument_conv = instrument[:instrument.index("/")]
-    to_conv_2 = to_conv[:3]
-
-    res = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : st.secrets["api_key"],
-                    "symbols" : instrument_conv,
-                    "show_alternatives": True
-                        }
-                )
-
-    rates_res = res.json()["rates"]
-
-    res_2 = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : st.secrets["api_key"],
-                    "symbols" : to_conv_2,
-                    "show_alternatives": True
-                        }
-                )
-
-    rates_res_2 = res_2.json()["rates"]
-
-    conv_factor_1 = rates_res[instrument_conv]
-    conv_factor_2 = rates_res_2[to_conv_2]
     
     klines = bybit.fetch_ohlcv(instrument, timeframe=Tframe, limit= lim, since=None)
 
@@ -186,16 +160,16 @@ if st.sidebar.button("Show Viz!"):
 # Converting close price to local currency here
 
     for i in range(0, len(df['close'])):
-        df['close'][i]= float(df['close'][i]) * (1/(conv_factor_1) * (conv_factor_2))
+        df['close'][i]= float(df['close'][i]) * (conv_factor_1) * (conv_factor_2))
     
     for i in range(0, len(df['open'])):
-        df['open'][i]= float(df['open'][i]) * (1/(conv_factor_1) * (conv_factor_2))
+        df['open'][i]= float(df['open'][i]) * (conv_factor_1) * (conv_factor_2))
         
     for i in range(0, len(df['high'])):
-        df['high'][i]= float(df['high'][i]) * (1/(conv_factor_1) * (conv_factor_2))
+        df['high'][i]= float(df['high'][i]) * (conv_factor_1) * (conv_factor_2))
     
     for i in range(0, len(df['low'])):
-        df['low'][i]= float(df['low'][i]) * (1/(conv_factor_1) * (conv_factor_2))
+        df['low'][i]= float(df['low'][i]) * (conv_factor_1) * (conv_factor_2))
 
 # calculate RSI
     df['rsi'] = ta.rsi(df['close'])
