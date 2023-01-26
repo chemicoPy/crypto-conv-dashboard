@@ -283,7 +283,7 @@ st.sidebar.markdown(
     -----------
     # Other App(s):
  
-    1. [Weather App](https://chemicopy-weather-app-dashboard-app-6mbfv4.streamlit.app/)
+    1. [Weather App](https://weather-monitor.streamlit.app/)
     
     """)
     
