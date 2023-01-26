@@ -160,16 +160,16 @@ if st.sidebar.button("Show Viz!"):
 # Converting close price to local currency here
 
     for i in range(0, len(df['close'])):
-        df['close'][i]= float(df['close'][i]) * (conv_factor_1) * (conv_factor_2))
+        df['close'][i]= float(df['close'][i]) * (conv_factor_1) * (conv_factor_2)
     
     for i in range(0, len(df['open'])):
-        df['open'][i]= float(df['open'][i]) * (conv_factor_1) * (conv_factor_2))
+        df['open'][i]= float(df['open'][i]) * (conv_factor_1) * (conv_factor_2)
         
     for i in range(0, len(df['high'])):
-        df['high'][i]= float(df['high'][i]) * (conv_factor_1) * (conv_factor_2))
+        df['high'][i]= float(df['high'][i]) * (conv_factor_1) * (conv_factor_2)
     
     for i in range(0, len(df['low'])):
-        df['low'][i]= float(df['low'][i]) * (conv_factor_1) * (conv_factor_2))
+        df['low'][i]= float(df['low'][i]) * (conv_factor_1) * (conv_factor_2)
 
 # calculate RSI
     df['rsi'] = ta.rsi(df['close'])
@@ -265,7 +265,7 @@ if st.sidebar.button("Show Viz!"):
 
 st.sidebar.markdown("## Quick Conversion") 
 price = st.sidebar.number_input("Enter price to convert")
-converted_price = float(price) * (1/(conv_factor_1) * (conv_factor_2))
+converted_price = float(price) * (conv_factor_1) * (conv_factor_2)
 
 if st.sidebar.button("Convert"):
   st.sidebar.write("Converted Price = ", converted_price)
