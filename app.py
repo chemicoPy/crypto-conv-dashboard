@@ -30,6 +30,7 @@ import plotly.express as px
 from pprint import pprint
 import statsmodels.regression.linear_model as rg
   
+@st.cache(suppress_st_warning=True)
 
 # Desiging & implementing changes to the standard streamlit UI/UX
 st.set_page_config(page_icon="img/page_icon.png", layout='wide', initial_sidebar_state='expanded')    #Logo
