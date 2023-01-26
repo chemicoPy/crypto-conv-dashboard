@@ -17,6 +17,7 @@ spacy>=2.2.0
 
 plotly==5.4.0
 pandas_ta 
+pylivecoinwatch
 schedule
 statsmodels
 
