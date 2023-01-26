@@ -40,6 +40,8 @@ st.subheader("Navigate to side bar to see full project info as well as options t
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
 
+from pylivecoinwatch import LiveCoinWatchAPI
+
 
 YOUR_APP_ID = st.secrets["api_key"]
 #simpleConverter = CurrencyConverter(YOUR_APP_ID, ["MATIC" , "XAU","BTC","ETH","DOGE", "GBP", 
@@ -102,25 +104,12 @@ Tframe = st.sidebar.selectbox(
         'Interval', ["Interval of interest", "1m","5m","15m","30m","1h","2h","4h","1d","1w","month"], index=0)
 
 
-#st.sidebar.markdown("## Visualization")    
-#instrument = st.sidebar.selectbox(
-#        '', ["Select Forex Pair of interest", "MATIC/USDT" , "XAU/USDT","BTC/USDT","ETH/USDT",
-#             "DOGE/USDT", "BNB/USDT", "USD/USDT", "XRP/USDT", "SOL/USDT", "TRX/USDT", "LTC/USDT", "SHIB/USDT"], index=0)
+#Conversion
 
+from pylivecoinwatch import LiveCoinWatchAPI
 
 instrument_conv = instrument[:instrument.index("/")]
 to_conv_2 = to_conv[:3]
-
-res = requests.get(
-                "https://openexchangerates.org/api/latest.json",
-                params = {
-                    "app_id" : st.secrets["api_key"],
-                    "symbols" : instrument_conv,
-                    "show_alternatives": True
-                        }
-                )
-
-rates_res = res.json()["rates"]
 
 res_2 = requests.get(
                 "https://openexchangerates.org/api/latest.json",
@@ -133,7 +122,12 @@ res_2 = requests.get(
 
 rates_res_2 = res_2.json()["rates"]
 
-conv_factor_1 = rates_res[instrument_conv]
+lcw = LiveCoinWatchAPI()
+lcw.set_api_key(st.secrets["api_key2"])
+
+rate1 = lcw.coins_single(code=instrument_conv)["rate"]
+
+conv_factor_1 = rate1
 conv_factor_2 = rates_res_2[to_conv_2]
 
     
