@@ -268,8 +268,8 @@ if st.sidebar.button("Convert"):
   
   
 demo = st.sidebar.checkbox('App Demo')
-    if demo == 1:
-       st.sidebar.video('https://res.cloudinary.com/victorogunjobi/video/upload/v1675910082/Crypto%20Converter/app_demo_odahtr.mp4', format='mp4')
+if demo == 1:
+    st.sidebar.video('https://res.cloudinary.com/victorogunjobi/video/upload/v1675910082/Crypto%20Converter/app_demo_odahtr.mp4', format='mp4')
   
   
    
