@@ -266,7 +266,7 @@ if st.sidebar.button("Convert"):
   st.sidebar.write("Converted Price = ", converted_price)
   
   
-  
+st.sidebar.markdown("## App Demo")   
 demo = st.sidebar.checkbox('App Demo')
 if demo == 1:
     st.sidebar.video('https://res.cloudinary.com/victorogunjobi/video/upload/v1675910082/Crypto%20Converter/app_demo_odahtr.mp4', format='mp4')
