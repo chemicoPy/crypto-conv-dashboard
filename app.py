@@ -33,9 +33,7 @@ import statsmodels.regression.linear_model as rg
 
 # Desiging & implementing changes to the standard streamlit UI/UX
 
-st.set_page_config(page_title='Crypto Converter', page_icon=':chart_with_upwards_trend:', layout='wide', initial_sidebar_state='expanded')
-
-st.set_page_config(page_icon="img/page_icon.png", layout='wide', initial_sidebar_state='expanded')    #Logo
+st.set_page_config(page_title='Crypto Converter', page_icon="img/page_icon.png", layout='wide', initial_sidebar_state='expanded')
 
 st.title('Crypto Converter to Local Currency')
 st.subheader("Navigate to side bar to see full project info as well as options to choose from, to get started!")
