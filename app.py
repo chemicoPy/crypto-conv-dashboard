@@ -18,7 +18,7 @@ import json
 from pandas import DataFrame, Series
 from numpy.random import randn
 import io
-from pandas.io.json import json_normalize
+
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 from streamlit_extras.app_logo import add_logo
